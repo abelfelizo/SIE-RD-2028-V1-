@@ -717,310 +717,84 @@ const MotorEscenarios = {
 //     (Stimson "Public Support for American Presidents" adaptado)
 //   - Ajuste por encuestas: Bayesian update cuando hay polls disponibles
 // ─────────────────────────────────────────────────────────────────
-/**
- * SIE 2028 v9.1 — MOTOR PROYECCIÓN COMPLETO
- * Proyecta voto esperado 2028 y control territorial probable
- * 
- * Mejoras vs v9.0:
- * - Corregir ciclos_en_poder PRM: 1 → 2
- * - Implementar swing histórico (35% aplicado)
- * - Proyección territorial por provincia/municipio/circunscripción
- * - Escenarios automáticos (base/optimista/pesimista)
- * - Integración con otros motores
- * - Participación variable
- */
+const MotorProyeccion = {
+  // Parámetros del modelo (calibrados en literatura comparada)
+  PARAMS: {
+    incumbencia_bonus: 3.5,      // Erikson & Wlezien: ~3.5pp en promedio
+    desgaste_por_ciclo: 2.0,     // Cada ciclo electoral adicional -2pp
+    regresion_media: 0.15,       // Mean reversion (Silver 538): 15% hacia 50%
+    peso_encuesta: 0.60,         // Cuando hay encuestas, pesan 60% (Bayesian)
+    peso_fundamentals: 0.40,     // Fundamentals pesan 40%
+  },
 
-const MotorProyeccionv91 = {
-  // ═══════════════════════════════════════════════════════════════
-  // DATOS BASE 2024 (CORREGIDOS)
-  // ═══════════════════════════════════════════════════════════════
-  
   BASE_2024: {
-    PRM: { 
-      votos_pct: 57.44, 
-      es_incumbente: true, 
-      ciclos_en_poder: 2,  // ⭐ CORREGIDO: 2020 Medina + 2024 Abinader
-      presidente_actual: "Abinader",
-      votos_absolutos: 2685123
-    },
-    FP:  { 
-      votos_pct: 28.85, 
-      es_incumbente: false, 
-      ciclos_en_poder: 0,
-      votos_absolutos: 1349045
-    },
-    PLD: { 
-      votos_pct: 10.39, 
-      es_incumbente: false, 
-      ciclos_en_poder: 0,
-      votos_absolutos: 486210
-    },
+    PRM: { votos_pct: 57.44, es_incumbente: true,  ciclos_en_poder: 1 },
+    FP:  { votos_pct: 28.85, es_incumbente: false, ciclos_en_poder: 0 },
+    PLD: { votos_pct: 10.39, es_incumbente: false, ciclos_en_poder: 0 },
   },
 
-  HISTORICO_2020: {
-    PRM: 56.71,
-    FP: 8.90,
-    PLD: 28.46,
-  },
-
-  PARAMETROS: {
-    swing_aplicado: 0.35,           // Solo aplicar 35% del swing histórico
-    incumbencia_factor: 1.02,       // Multiplicador (+2%) en lugar de suma
-    fatiga_gobierno_8años: 2.0,     // -2pp después de 8 años
-    desgaste_por_ciclo: 2.0,        // -2pp por ciclo adicional (si ciclos > 1)
-    peso_fundamentals: 0.60,        // Si hay encuestas
-    peso_encuestas: 0.40,
-    participacion_base: 0.54,
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 1: BASELINE
-  // ═══════════════════════════════════════════════════════════════
-  
-  baseline() {
-    return {
-      PRM: this.BASE_2024.PRM.votos_pct,
-      FP: this.BASE_2024.FP.votos_pct,
-      PLD: this.BASE_2024.PLD.votos_pct,
-    };
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 2: SWING HISTÓRICO
-  // ═══════════════════════════════════════════════════════════════
-  
-  swingHistorico() {
-    const swing = {};
-    Object.entries(this.BASE_2024).forEach(([partido, data]) => {
-      const swing2020 = data.votos_pct - this.HISTORICO_2020[partido];
-      const swing_aplicado = swing2020 * this.PARAMETROS.swing_aplicado;
-      swing[partido] = {
-        swing_total: +(swing2020).toFixed(2),
-        swing_aplicado_35pct: +(swing_aplicado).toFixed(2)
-      };
-    });
-    return swing;
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 3: FUNDAMENTALS
-  // ═══════════════════════════════════════════════════════════════
-  
-  fundamentals(participacion = 0.54) {
-    const p = this.PARAMETROS;
+  proyectar(ajustes={}, encuestas=null) {
+    const p = this.PARAMS;
     const result = {};
 
     Object.entries(this.BASE_2024).forEach(([partido, base]) => {
       let proyectado = base.votos_pct;
 
-      // A) INCUMBENCIA (como factor multiplicador, no suma)
+      // 1. Ajuste de incumbencia
       if (base.es_incumbente) {
-        proyectado = proyectado * p.incumbencia_factor;
+        proyectado += p.incumbencia_bonus;
+        // Desgaste si lleva más de 1 ciclo
+        if (base.ciclos_en_poder > 1) {
+          proyectado -= p.desgaste_por_ciclo * (base.ciclos_en_poder - 1);
+        }
       }
 
-      // B) DESGASTE POR CICLOS
-      if (base.ciclos_en_poder > 1) {
-        const desgaste = p.desgaste_por_ciclo * (base.ciclos_en_poder - 1);
-        proyectado -= desgaste;
+      // 2. Regresión a la media (Silver/538): partidos muy fuertes tienden a bajar
+      const dist_media = proyectado - 50;
+      proyectado -= dist_media * p.regresion_media;
+
+      // 3. Bayesian update con encuestas si disponibles
+      if (encuestas && encuestas[partido] !== undefined) {
+        proyectado = proyectado * p.peso_fundamentals + encuestas[partido] * p.peso_encuesta;
       }
 
-      // C) SWING HISTÓRICO MODERADO (35%)
-      const swing_total = base.votos_pct - this.HISTORICO_2020[partido];
-      const swing_mod = swing_total * p.swing_aplicado;
-      proyectado += swing_mod;
+      // 4. Ajuste por normalización histórica (MotorNormalizacionHistorica)
+      // Aplica factor de madurez organizativa para partidos jóvenes (FP) o
+      // partidos con escisión (PLD). En modo PROXY usa estimación; en modo
+      // COMPLETO usa la data real 2020.
+      const factorHist = MotorNormalizacionHistorica.factorAjusteProyeccion(partido);
+      if (factorHist.multiplicador !== 1.00) {
+        const ajuste_hist = proyectado * (factorHist.multiplicador - 1);
+        proyectado += ajuste_hist;
+      }
+
+      // 5. Ajuste manual (offset del usuario)
+      proyectado += (ajustes[partido] || 0);
 
       result[partido] = {
-        base_2024: +(base.votos_pct).toFixed(2),
-        incumbencia_factor: base.es_incumbente ? p.incumbencia_factor : 1.0,
-        desgaste_ciclos: base.ciclos_en_poder > 1 ? -(p.desgaste_por_ciclo * (base.ciclos_en_poder - 1)) : 0,
-        swing_aplicado: +(swing_mod).toFixed(2),
-        proyectado_fundamentals: +(Math.max(0, proyectado)).toFixed(2),
+        base_2024: base.votos_pct,
+        proyectado: +Math.max(0, Math.min(100, proyectado)).toFixed(2),
+        metodologia: encuestas ? 'Fundamentals+Encuestas' : 'Fundamentals',
+        es_incumbente: base.es_incumbente,
+        ajuste_normalizacion: factorHist.multiplicador !== 1.00
+          ? { multiplicador: factorHist.multiplicador, razon: factorHist.razon, modo: factorHist.modo }
+          : null
       };
     });
+
+    // Normalizar para que sumen 100%
+    const total = Object.values(result).reduce((s,x)=>s+x.proyectado,0);
+    Object.values(result).forEach(x => { x.proyectado_norm = +(x.proyectado/total*100).toFixed(2); });
 
     return result;
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 4: ENCUESTAS (placeholder)
-  // ═══════════════════════════════════════════════════════════════
-  
-  encuestas(encuestasArray = null) {
-    if (!encuestasArray || encuestasArray.length === 0) {
-      return { "NOTA": "Sin encuestas recientes", "peso_aplicado": 0 };
-    }
-
-    // Ponderación por recencia, tamaño muestra, calidad
-    const promedio = {};
-    let totalWeight = 0;
-
-    encuestasArray.forEach(enc => {
-      const diasAtras = Math.floor((Date.now() - new Date(enc.fecha)) / (1000*60*60*24));
-      const recencyWeight = Math.exp(-0.02 * diasAtras);  // Decay exponencial
-      const sampleWeight = enc.muestra / 1000;             // Normalizar por tamaño
-      const qualityWeight = enc.calidad === 'A' ? 1.0 : enc.calidad === 'B' ? 0.8 : 0.6;
-      
-      const weight = recencyWeight * sampleWeight * qualityWeight;
-      totalWeight += weight;
-
-      Object.entries(enc.resultado).forEach(([partido, pct]) => {
-        promedio[partido] = (promedio[partido] || 0) + (pct * weight);
-      });
-    });
-
-    Object.keys(promedio).forEach(partido => {
-      promedio[partido] = +(promedio[partido] / totalWeight).toFixed(2);
-    });
-
-    return promedio;
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 5: NORMALIZACIÓN PARTIDARIA (MADUREZ)
-  // ═══════════════════════════════════════════════════════════════
-  
-  normalizacionPartidos(proyecciones) {
-    const result = {};
-
-    Object.entries(this.BASE_2024).forEach(([partido, base]) => {
-      let factor = 1.0;
-
-      // Para FP: ajuste por juventud organizativa
-      if (partido === 'FP') {
-        // FP fundado 2020, está en ciclo de consolidación
-        const años_desde_fundacion = 4;  // 2020-2024
-        const ratio_votos = 28.85 / 8.90;  // 2024/2020
-        factor = (años_desde_fundacion / 8) * Math.sqrt(ratio_votos);
-        factor = Math.max(0.95, Math.min(1.12, factor));
-      }
-
-      result[partido] = {
-        proyectado_antes: +(proyecciones[partido]).toFixed(2),
-        factor_madurez: +(factor).toFixed(3),
-        proyectado_después: +(proyecciones[partido] * factor).toFixed(2),
-      };
-    });
-
-    return result;
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 6: PROYECCIÓN TERRITORIAL
-  // ═══════════════════════════════════════════════════════════════
-  
-  proyeccionTerritorial(proyecciones_nacionales, territorios = null) {
-    // Si no hay datos territoriales, devolver nacional
-    if (!territorios) {
-      return {
-        "NOTA": "Proyección nacional sin desglose territorial",
-        "nacional": proyecciones_nacionales
-      };
-    }
-
-    const resultado = {
-      provincial: [],
-      municipal: [],
-    };
-
-    // Aplicar tendencia nacional a cada territorio
-    if (territorios.provincias) {
-      territorios.provincias.forEach(prov => {
-        const resultado_prov = {};
-        Object.entries(proyecciones_nacionales).forEach(([partido, voto_nacional]) => {
-          // Ajuste territorial = swing local + movilización + potencial
-          const swing_local = (prov[`swing_${partido}`] || 0) * 0.5;
-          const movilizacion = (prov.abstencientes_movilizables || 0) * 0.01 * 0.3;
-          const potencial = (prov[`potencial_${partido}`] || 0) * 0.2;
-          
-          const ajuste = swing_local + movilizacion + potencial;
-          resultado_prov[partido] = Math.max(0, Math.min(100, voto_nacional + ajuste));
-        });
-
-        resultado.provincial.push({
-          provincia: prov.nombre,
-          proyecciones: resultado_prov,
-          ganador: Object.entries(resultado_prov).sort((a, b) => b[1] - a[1])[0][0],
-        });
-      });
-    }
-
-    return resultado;
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // PASO 7: ENSAMBLAJE FINAL
-  // ═══════════════════════════════════════════════════════════════
-  
-  proyectar(encuestas = null, participacion = 0.54, territorios = null) {
-    // 1. Baseline
-    const base = this.baseline();
-
-    // 2. Swing histórico
-    const swing = this.swingHistorico();
-
-    // 3. Fundamentals
-    const fund = this.fundamentals(participacion);
-    const proyecciones_fund = Object.fromEntries(
-      Object.entries(fund).map(([p, d]) => [p, d.proyectado_fundamentals])
-    );
-
-    // 4. Encuestas
-    const enc = this.encuestas(encuestas);
-    let proyecciones_final = proyecciones_fund;
-    if (enc && enc.PRM) {
-      Object.keys(proyecciones_final).forEach(partido => {
-        proyecciones_final[partido] = 
-          (proyecciones_fund[partido] * this.PARAMETROS.peso_fundamentals) +
-          ((enc[partido] || 0) * this.PARAMETROS.peso_encuestas);
-      });
-    }
-
-    // 5. Normalización
-    const norm = this.normalizacionPartidos(proyecciones_final);
-    proyecciones_final = Object.fromEntries(
-      Object.entries(norm).map(([p, d]) => [p, d.proyectado_después])
-    );
-
-    // 6. Normalizar a 100%
-    const total = Object.values(proyecciones_final).reduce((s, v) => s + v, 0);
-    Object.keys(proyecciones_final).forEach(p => {
-      proyecciones_final[p] = Math.round(proyecciones_final[p] / total * 100 * 100) / 100;
-    });
-
-    // 7. Proyección territorial
-    const terr = this.proyeccionTerritorial(proyecciones_final, territorios);
-
-    return {
-      nacional: proyecciones_final,
-      territorio: terr,
-      metadata: {
-        metodo: encuestas ? "Fundamentals + Encuestas" : "Fundamentals",
-        participacion: participacion,
-        ciclos_prm: this.BASE_2024.PRM.ciclos_en_poder,
-        timestamp: new Date().toISOString(),
-      }
-    };
-  },
-
-  // ═══════════════════════════════════════════════════════════════
-  // ESCENARIOS AUTOMÁTICOS
-  // ═══════════════════════════════════════════════════════════════
-  
-  escenarios() {
-    return {
-      base: this.proyectar(null, 0.54),
-      optimista: this.proyectar(null, 0.56),  // +2pp participación
-      pesimista: this.proyectar(null, 0.52), // -2pp participación
-    };
   }
 };
 
-// Exportar
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = MotorProyeccionv91;
-}
-
-
+// ─────────────────────────────────────────────────────────────────
+// MOTOR 12: CRECIMIENTO DEL PADRÓN
+// Modelo: compound growth rate (CAGR) + proyección lineal
+//         Metodología estándar en demografía electoral
+// ─────────────────────────────────────────────────────────────────
 const MotorCrecimientoPadron = {
   // Datos históricos validados (JCE oficial)
   HISTORICO: [
@@ -1675,7 +1449,7 @@ window.SIE_MOTORES = {
   KPIs:              MotorKPIs,
   Replay:            MotorReplay,
   Escenarios:        MotorEscenarios,
-  Proyeccionv91:        MotorProyeccionv91,
+  Proyeccion:        MotorProyeccion,
   CrecimientoPadron: MotorCrecimientoPadron,
   Encuestas:         MotorEncuestas,
   // Estrategia

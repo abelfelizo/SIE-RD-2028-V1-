@@ -1,293 +1,360 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIE 2028 v9.1 - Sistema de Inteligencia Electoral</title>
-    <link rel="stylesheet" href="assets/css/theme-v91.css">
-    <script src="core/engine.js"></script>
-    <script src="core/ui.js"></script>
-    <script src="core/engine.js"></script>
-    <script src="core/ui.js"></script>
-    <script src="assets/js/app-v91-completo.js"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SIE 2028 · Sistema Inteligencia Electoral</title>
+<link rel="stylesheet" href="./assets/css/styles.css"/>
 </head>
 <body>
-    <div id="app">
-        <!-- HEADER -->
-        <div class="header">
-            <div class="header-left">
-                <div class="logo">SIE 2028</div>
-            </div>
 
-            <div class="header-center">
-                <button class="nav-button active" data-vista="comando">📊 Comando</button>
-                <button class="nav-button" data-vista="resultados">📈 Resultados</button>
-                <button class="nav-button" data-vista="inteligencia">🧠 Inteligencia</button>
-                <button class="nav-button" data-vista="proyeccion">🔮 Proyección 2028</button>
-                <button class="nav-button" data-vista="simulacion">⚡ Simulación</button>
-                <button class="nav-button" data-vista="historico">📜 Histórico</button>
-                <button class="nav-button" data-vista="sistema">⚙️ Sistema</button>
-            </div>
+<header class="topbar">
+  <div class="brand">
+    <span style="font-size:1.3rem">⚡</span>
+    <span class="brand-name">SIE 2028</span>
+    <span class="badge">v8.9</span>
+    <span class="badge-ds">DATASET 2024</span>
+  </div>
+  <div style="display:flex;gap:.75rem;align-items:center">
+    <span id="sys-status" style="font-size:.76rem;color:var(--muted)">Iniciando...</span>
+  </div>
+</header>
 
-            <div class="header-right">
-                <div class="theme-toggle" id="themeToggle">
-                    <span class="theme-toggle-icon active">🌙</span>
-                    <div class="theme-toggle-circle"></div>
-                    <span class="theme-toggle-icon">☀️</span>
-                </div>
-            </div>
+<!-- NAV con grupos jerárquicos -->
+<nav class="nav" id="main-nav">
+  <div class="nav-group">
+    <span class="nav-group-label">COMANDO</span>
+    <button class="nav-btn active" data-view="dashboard">📊 Dashboard</button>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-group">
+    <span class="nav-group-label">2024</span>
+    <button class="nav-btn" data-view="presidencial">🗾 Presidencial</button>
+    <button class="nav-btn" data-view="senadores">🏛 Senadores</button>
+    <button class="nav-btn" data-view="diputados">📋 Diputados</button>
+    <button class="nav-btn" data-view="exterior">🌍 Exterior</button>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-group">
+    <span class="nav-group-label">INTELIGENCIA</span>
+    <button class="nav-btn" data-view="potencial">🎯 Potencial</button>
+    <button class="nav-btn" data-view="movilizacion">🚀 Movilización</button>
+    <button class="nav-btn" data-view="riesgo">⚠ Riesgo</button>
+    <button class="nav-btn" data-view="historico">📊 Histórico 2020</button>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-group">
+    <span class="nav-group-label">2028</span>
+    <button class="nav-btn" data-view="simulador">🔬 Simulador</button>
+    <button class="nav-btn" data-view="proyeccion">📈 Proyección</button>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-group">
+    <span class="nav-group-label">SISTEMA</span>
+    <button class="nav-btn" data-view="replay">▶ Replay</button>
+    <button class="nav-btn" data-view="motores">⚙ Motores</button>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- NIVEL 1: COMANDO -->
+  <div id="view-dashboard" class="view active">
+    <!-- Fila 1: KPIs estratégicos -->
+    <div id="kpi-section"></div>
+
+    <!-- Fila 2: Presidencial por bloque + Legislativo -->
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Presidencial por bloque</span>
+          <span class="card-badge">Con alianzas · 2024</span>
         </div>
-
-        <!-- MAIN -->
-        <div class="main-container">
-            <!-- SIDEBAR -->
-            <div class="nav-sidebar">
-                <!-- COMANDO -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Comando Ejecutivo</div>
-                    <div class="nav-item active" data-vista="comando" data-seccion="dashboard">Dashboard</div>
-                </div>
-
-                <!-- RESULTADOS -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Resultados Electorales</div>
-                    <div class="nav-item" data-vista="resultados" data-seccion="presidencial">Presidencial</div>
-                    <div class="nav-item" data-vista="resultados" data-seccion="senadores">Senadores</div>
-                    <div class="nav-item" data-vista="resultados" data-seccion="diputados">Diputados</div>
-                </div>
-
-                <!-- INTELIGENCIA -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Análisis de Inteligencia</div>
-                    <div class="nav-item" data-vista="inteligencia" data-seccion="potencial">Potencial Electoral</div>
-                    <div class="nav-item" data-vista="inteligencia" data-seccion="movilizacion">Movilización</div>
-                    <div class="nav-item" data-vista="inteligencia" data-seccion="riesgo">Análisis de Riesgo</div>
-                </div>
-
-                <!-- PROYECCIÓN -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Proyección Electoral</div>
-                    <div class="nav-item" data-vista="proyeccion" data-seccion="proyeccion">Proyección 2028</div>
-                    <div class="nav-item" data-vista="proyeccion" data-seccion="ruta">Ruta de Victoria</div>
-                    <div class="nav-item" data-vista="proyeccion" data-seccion="prioridad">Prioridad Estratégica</div>
-                </div>
-
-                <!-- SIMULACIÓN -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Herramientas</div>
-                    <div class="nav-item" data-vista="simulacion" data-seccion="simulador">Simulador Electoral</div>
-                    <div class="nav-item" data-vista="historico" data-seccion="replay">Replay 2020-2024</div>
-                </div>
-
-                <!-- SISTEMA -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Configuración</div>
-                    <div class="nav-item" data-vista="sistema" data-seccion="motores">Motores Analíticos</div>
-                    <div class="nav-item" data-vista="sistema" data-seccion="datos">Gestión de Datos</div>
-                </div>
-            </div>
-
-            <!-- CONTENT AREA -->
-            <div class="content-area">
-
-                <!-- VISTA 1: COMANDO EJECUTIVO -->
-                <div class="vista active" id="vista-comando">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">Dashboard Ejecutivo 2028</div>
-                        </div>
-                        
-                        <div class="grid grid-4">
-                            <div class="stat-card">
-                                <div class="stat-value" id="meta-votos">2.35M</div>
-                                <div class="stat-label">Meta de Votos</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="gap-votos">254K</div>
-                                <div class="stat-label">Gap Electoral</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="proyeccion-fp">30.8%</div>
-                                <div class="stat-label">Proyección FP</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" id="provincias-pivote">5</div>
-                                <div class="stat-label">Provincias Pivote</div>
-                            </div>
-                        </div>
-
-                        <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--green-light);">Semáforo Territorial (32 Provincias)</h3>
-                        <div class="semaforo" id="semaforo-provincias">
-                            <!-- Generado dinámicamente -->
-                        </div>
-
-                        <div class="grid grid-2" style="margin-top: 24px;">
-                            <div class="panel">
-                                <div class="panel-title">Top 5 Provincias Pivote</div>
-                                <div id="top5-pivote" style="font-size: 13px;">
-                                    <!-- Generado dinámicamente -->
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-title">Top 5 Provincias Ofensivas</div>
-                                <div id="top5-ofensivas" style="font-size: 13px;">
-                                    <!-- Generado dinámicamente -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel" style="margin-top: 16px;">
-                            <div class="panel-title">3 Acciones Recomendadas</div>
-                            <ol style="margin-left: 20px; line-height: 2;">
-                                <li>Reforzar movilización en provincias pivote (Santo Domingo, Espaillat, La Vega)</li>
-                                <li>Negociar alianzas con PLD y PQDC para absorber votos de coalición</li>
-                                <li>Ejecutar encuestas en tiempo real para calibrar proyecciones cada 2 semanas</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISTA 2: RESULTADOS -->
-                <div class="vista" id="vista-resultados">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="panel-title">Resultados Electorales</div>
-                            <div>
-                                <button class="btn btn-secondary" onclick="cargarSeccion('presidencial')">Presidencial</button>
-                                <button class="btn btn-secondary" onclick="cargarSeccion('senadores')">Senadores</button>
-                                <button class="btn btn-secondary" onclick="cargarSeccion('diputados')">Diputados</button>
-                            </div>
-                        </div>
-                        <div id="resultados-contenido">
-                            <!-- Generado dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISTA 3: INTELIGENCIA -->
-                <div class="vista" id="vista-inteligencia">
-                    <div class="panel">
-                        <div class="panel-title">Análisis de Inteligencia Electoral</div>
-                        <div class="grid grid-2" id="inteligencia-contenido">
-                            <!-- Generado dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISTA 4: PROYECCIÓN 2028 -->
-                <div class="vista" id="vista-proyeccion">
-                    <div class="panel">
-                        <div class="panel-title">Proyección Electoral 2028</div>
-                        <div class="grid grid-2" id="proyeccion-contenido">
-                            <!-- Generado dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISTA 5: SIMULACIÓN -->
-                <div class="vista" id="vista-simulacion">
-                    <div class="panel">
-                        <div class="panel-title">Simulador Electoral</div>
-                        <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
-                            Simulador electoral - Ajusta parámetros y genera escenarios
-                        </p>
-                    </div>
-                </div>
-
-                <!-- VISTA 6: HISTÓRICO -->
-                <div class="vista" id="vista-historico">
-                    <div class="panel">
-                        <div class="panel-title">Replay Electoral 2020-2024</div>
-                        <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
-                            Análisis histórico de ciclos electorales anteriores
-                        </p>
-                    </div>
-                </div>
-
-                <!-- VISTA 7: SISTEMA -->
-                <div class="vista" id="vista-sistema">
-                    <div class="panel">
-                        <div class="panel-title">Motores Analíticos (24 Motores Activos)</div>
-                        <div class="grid grid-3" id="sistema-contenido">
-                            <!-- Generado dinámicamente -->
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div id="pres-bar-list" class="bar-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Balance legislativo 2024</span>
+          <span class="card-badge">222 curules totales</span>
         </div>
+        <div id="leg-bar-list" class="bar-list"></div>
+        <div class="divider"></div>
+        <canvas id="parl-canvas" width="360" height="195" style="display:block;margin:0 auto"></canvas>
+        <div id="parl-legend" style="display:flex;flex-wrap:wrap;gap:.5rem 1rem;justify-content:center;margin-top:.75rem"></div>
+      </div>
     </div>
 
-    <script>
-        // THEME TOGGLE
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme-mode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        });
+    <!-- Fila 3: Estadísticas + Indicadores + Coalición -->
+    <div class="grid g3" style="margin-top:1rem">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Estadísticas electorales</span><span class="card-badge">JCE Oficial</span></div>
+        <div id="dash-padron"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Indicadores estratégicos</span><span class="card-badge">Laakso-Taagepera</span></div>
+        <div id="dash-indicadores"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Coalición PRM</span><span class="card-badge">Partidos aliados</span></div>
+        <div id="dash-coalicion"></div>
+      </div>
+    </div>
+  </div>
 
-        // CARGAR TEMA AL INICIAR
-        if (localStorage.getItem('theme-mode') === 'light') {
-            document.body.classList.add('light-mode');
-        }
 
-        // NAV BUTTONS
-        document.querySelectorAll('.header-center .nav-button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const vista = this.dataset.vista;
-                document.querySelectorAll('.vista').forEach(v => v.classList.remove('active'));
-                document.getElementById('vista-' + vista).classList.add('active');
-            });
-        });
+  <!-- NIVEL 2: ANÁLISIS ELECTORAL 2024 -->
+  <div id="view-presidencial" class="view">
+    <div class="section-title">🗾 Resultados Presidenciales 2024</div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Por bloque electoral</span><span class="card-badge">JCE Oficial · Con alianzas</span></div>
+        <div id="pres-blocs-bars" class="bar-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Estadísticas del proceso</span></div>
+        <div id="pres-stats"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr"><span class="card-title">Por partido individual</span><span class="card-badge">Sin agrupar</span></div>
+      <div id="pres-all-parties"></div>
+    </div>
+  </div>
 
-        // SIDEBAR NAV
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const vista = this.dataset.vista;
-                document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-                document.querySelector(`[data-vista="${vista}"]`).classList.add('active');
-                document.querySelectorAll('.vista').forEach(v => v.classList.remove('active'));
-                document.getElementById('vista-' + vista).classList.add('active');
-            });
-        });
+  <div id="view-senadores" class="view">
+    <div class="section-title">🏛 Senadores 2024 — 32 Provincias</div>
+    <div class="kpi-grid" id="sen-kpis"></div>
+    <!-- Tabs: ganador real vs bloque coalición -->
+    <div class="tab-bar" id="sen-tab-bar">
+      <button class="tab-btn active" data-tab="sen-real">Ganador real por partido</button>
+      <button class="tab-btn" data-tab="sen-coal">Por bloque coalición</button>
+    </div>
+    <div id="sen-tab-real" class="tab-panel active">
+      <div class="prov-grid" id="sen-prov-grid"></div>
+    </div>
+    <div id="sen-tab-coal" class="tab-panel">
+      <div id="sen-coal-detail"></div>
+    </div>
+  </div>
 
-        // INICIALIZAR DATOS
-        function inicializarDashboard() {
-            // Cargar Motor Proyección v9.1
-            const proyeccion = window.SIE_MOTORES.Proyeccionv91.proyectar();
-            console.log('Proyección v9.1:', proyeccion);
+  <div id="view-diputados" class="view">
+    <div class="section-title">📋 Diputados 2024 — D'Hondt</div>
+    <div class="kpi-grid" id="dip-kpis"></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Curules por partido</span><span class="card-badge">178+5+7=190</span></div>
+        <div id="dip-bar-list" class="bar-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Diputados Exterior</span><span class="card-badge">7 curules</span></div>
+        <div id="ext-detail"></div>
+        <div class="divider"></div>
+        <div class="card-hdr" style="padding-top:.6rem"><span class="card-title">Lista Nacional</span><span class="card-badge">5 curules</span></div>
+        <div id="nat-detail"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr"><span class="card-title">Por circunscripción</span><span class="card-badge">D'Hondt umbral 2%</span></div>
+      <div id="dip-circ-grid"></div>
+    </div>
+  </div>
 
-            // Cargar Motor Meta Electoral
-            const meta = window.SIE_MOTORES.MetaElectoral.calculate();
-            document.getElementById('meta-votos').textContent = (meta.meta.metaVotos / 1000000).toFixed(2) + 'M';
-            document.getElementById('gap-votos').textContent = (meta.meta.gap / 1000).toFixed(0) + 'K';
+  <!-- NIVEL 2: EXTERIOR -->
+  <div id="view-exterior" class="view">
+    <div class="section-title">🌍 Voto Exterior 2024</div>
+    <div class="kpi-grid" id="ext-kpis"></div>
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr">
+        <span class="card-title">3 Circunscripciones del Exterior</span>
+        <span class="card-badge">Pres. + Diputados · 863,784 inscritos</span>
+      </div>
+      <div id="ext-circs"></div>
+    </div>
+  </div>
 
-            // Cargar datos ficticios para provincias
-            generarSemaforoProvincias();
-        }
+  <!-- NIVEL 3: INTELIGENCIA ESTRATÉGICA -->
+  <div id="view-potencial" class="view">
+    <div class="section-title">🎯 Potencial Electoral por Territorio</div>
+    <!-- Selector de nivel electoral -->
+    <div class="level-selector" id="pot-level-bar">
+      <span class="level-label">Nivel:</span>
+      <button class="level-btn active" data-level="presidencial">Presidencial</button>
+      <button class="level-btn" data-level="senadores">Senadores</button>
+      <button class="level-btn" data-level="diputados">Diputados</button>
+    </div>
+    <div class="grid g2" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Objetivos ofensivos — FP</span>
+          <span class="card-badge">Score Jacobson 2004</span>
+        </div>
+        <div id="potencial-ofensivo"></div>
+        <p class="note">Score = f(margen, absten., ENPP). Fuente: Jacobson (2004), Taagepera-Shugart</p>
+      </div>
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Defensas prioritarias — PRM</span>
+          <span class="card-badge">Risk composite</span>
+        </div>
+        <div id="potencial-defensivo"></div>
+        <p class="note">Risk = 0.5*(1-margen) + 0.25*(1-partic) + 0.25*ENPP. Fuente: Jacobson (2004)</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <span class="card-title">Mapa de competitividad provincial</span>
+        <span class="card-badge" id="pot-nivel-badge">Nivel: presidencial</span>
+      </div>
+      <div id="competitividad-grid" class="prov-grid"></div>
+    </div>
+  </div>
 
-        function generarSemaforoProvincias() {
-            const provincias = [
-                { nombre: 'Santo Domingo', estado: 'amarillo' },
-                { nombre: 'Espaillat', estado: 'amarillo' },
-                { nombre: 'La Vega', estado: 'amarillo' },
-                { nombre: 'Santiago', estado: 'rojo' },
-                { nombre: 'Duarte', estado: 'verde' },
-                { nombre: 'Camagüey', estado: 'verde' }
-            ];
+  <div id="view-movilizacion" class="view">
+    <div class="section-title">🚀 Agenda de Movilización</div>
+    <!-- Selector de partido + nivel -->
+    <div class="level-selector" id="mov-controls">
+      <span class="level-label">Partido:</span>
+      <button class="level-btn active" data-partido="FP">FP</button>
+      <button class="level-btn" data-partido="PRM">PRM</button>
+      <button class="level-btn" data-partido="PLD">PLD</button>
+      <span class="level-label" style="margin-left:.75rem">Nivel:</span>
+      <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
+      <button class="level-btn" data-nivel="senadores">Senadores</button>
+      <button class="level-btn" data-nivel="diputados">Diputados</button>
+    </div>
+    <div class="kpi-grid" id="mov-kpis"></div>
+    <div class="card">
+      <div class="card-hdr">
+        <span class="card-title" id="mov-card-title">Provincias recuperables</span>
+        <span class="card-badge">Leighley &amp; Nagler 2013</span>
+      </div>
+      <p class="note" style="margin-bottom:.75rem">Votos necesarios = ceil(Δvotos/2)+1. Factibilidad = % de abstencionistas a movilizar.</p>
+      <div id="movilizacion-list"></div>
+    </div>
+  </div>
 
-            const semaforo = document.getElementById('semaforo-provincias');
-            provincias.slice(0, 12).forEach(prov => {
-                const div = document.createElement('div');
-                div.className = `provincia-item ${prov.estado}`;
-                div.innerHTML = `<div class="provincia-name">${prov.nombre}</div><div class="provincia-score">Score: ${Math.random().toFixed(2)}</div>`;
-                semaforo.appendChild(div);
-            });
-        }
+  <div id="view-riesgo" class="view">
+    <div class="section-title">⚠ Mapa de Riesgo Electoral</div>
+    <!-- Selector de partido + nivel -->
+    <div class="level-selector" id="riesgo-controls">
+      <span class="level-label">Partido:</span>
+      <button class="level-btn active" data-partido="PRM">PRM</button>
+      <button class="level-btn" data-partido="FP">FP</button>
+      <span class="level-label" style="margin-left:.75rem">Nivel:</span>
+      <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
+      <button class="level-btn" data-nivel="senadores">Senadores</button>
+    </div>
+    <div class="kpi-grid" id="riesgo-kpis"></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Provincias por riesgo</span><span class="card-badge">Composite Index</span></div>
+        <div id="riesgo-list"></div>
+        <p class="note">Risk = 0.50×(1-margen) + 0.25×(1-partic.) + 0.25×ENPP</p>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Alertas de alto riesgo</span></div>
+        <div id="riesgo-alertas"></div>
+      </div>
+    </div>
+  </div>
 
-        // AL CARGAR
-        window.addEventListener('load', inicializarDashboard);
-    </script>
+  <!-- HISTÓRICO 2020 -->
+  <div id="view-historico" class="view">
+    <div class="section-title">📊 Histórico 2020 — Comparativa vs 2024</div>
+    <div class="kpi-grid" id="hist-kpis"></div>
+
+    <div class="grid g2" style="margin-top:1rem">
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Presidencial 2020 por partido</span>
+          <span class="card-badge">JCE Oficial · Sin alianzas</span>
+        </div>
+        <div id="hist-pres-bars" class="bar-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr">
+          <span class="card-title">Curules 2020 vs 2024</span>
+          <span class="card-badge">Legislativo comparado</span>
+        </div>
+        <div id="hist-curules-comp"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr">
+        <span class="card-title">Swing presidencial por provincia</span>
+        <span class="card-badge">Δ% 2024 vs 2020</span>
+      </div>
+      <div id="hist-swing-grid"></div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr">
+        <span class="card-title">Senadores 2020 — Ganador por provincia</span>
+        <span class="card-badge">PRM: 25 · PLD: 7</span>
+      </div>
+      <div class="prov-grid" id="hist-sen-grid"></div>
+    </div>
+  </div>
+
+  <!-- NIVEL 4: PROSPECTIVA 2028 -->
+  <div id="view-simulador" class="view">
+    <div class="section-title">🔬 Simulador Electoral 2028</div>
+    <div class="sim-grid">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Intención de voto</span><span class="card-badge">D'Hondt + umbral 2%</span></div>
+        <div id="sim-sliders" class="slider-group"></div>
+        <div style="margin-top:1rem">
+          <button id="btn-simular" style="background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:var(--r);font-weight:700;cursor:pointer;width:100%">▶ Simular D'Hondt</button>
+        </div>
+        <p class="note">D'Hondt con umbral 2% — Ley Electoral RD 275-97, Art. 68</p>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Proyección legislativa</span></div>
+        <div id="sim-results"><p class="text-muted text-sm">Ajusta los sliders y presiona Simular.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-proyeccion" class="view">
+    <div class="section-title">📈 Proyección Electoral 2028</div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Modelo Fundamentals</span><span class="card-badge">Abramowitz 2008 adaptado</span></div>
+        <div id="proy-fundamentals"></div>
+        <p class="note">Incumbencia Erikson & Wlezien +3.5pp. Desgaste -2pp por ciclo adicional. Regresión a la media 15% (Silver/538).</p>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Crecimiento del Padrón</span><span class="card-badge">CAGR</span></div>
+        <div id="proy-padron"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr"><span class="card-title">Encuestas — Carga manual</span><span class="card-badge">Silver/538 weighting</span></div>
+      <div id="encuestas-panel"></div>
+    </div>
+  </div>
+
+  <!-- NIVEL 5: TÉCNICO / AUDITORÍA -->
+  <div id="view-replay" class="view">
+    <div class="section-title">▶ Replay Electoral 2024</div>
+    <div class="grid g2">
+      <div class="card"><div class="card-hdr"><span class="card-title">Verificaciones</span><span class="card-badge">MODO REPLAY</span></div><div id="replay-checks"></div></div>
+      <div class="card"><div class="card-hdr"><span class="card-title">Resumen</span></div><div id="replay-summary"></div></div>
+    </div>
+  </div>
+
+  <div id="view-motores" class="view">
+    <div class="section-title">⚙ Estado de Motores — SIE 2028 v8.9</div>
+    <div class="grid g2">
+      <div class="card"><div class="card-hdr"><span class="card-title">Activos</span></div><div id="motores-on"></div></div>
+      <div class="card"><div class="card-hdr"><span class="card-title">Desactivados</span></div><div id="motores-off"></div></div>
+    </div>
+    <div class="card" style="margin-top:1rem"><div class="card-hdr"><span class="card-title">Datasets</span></div><div id="datasets-status"></div></div>
+    <div class="card" style="margin-top:1rem"><div class="card-hdr"><span class="card-title">Referencias metodológicas</span></div><div id="metodologia-refs"></div></div>
+  </div>
+
+</main>
+<script src="./app.js"></script>
 </body>
 </html>

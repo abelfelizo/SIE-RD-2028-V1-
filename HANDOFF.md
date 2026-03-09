@@ -1,445 +1,129 @@
-# HANDOFF — SIE 2028 v9.1
+# HANDOFF — SIE 2028 v9.0
 
 ## QUÉ SE HIZO (Pasos Pasados)
 
 **Fecha:** 9 de Marzo, 2026  
-**Versión anterior:** v9.0  
-**Versión nueva:** v9.1  
+**Versión anterior:** v8.9-pre  
+**Versión nueva:** v9.0  
 **Estado:** PRODUCCIÓN  
-**Cambios:** 1 crítica + 7 mejoras
 
----
+### 1. BASE DE OPERACIÓN
+- Tomada la versión v8.9-pre exactamente como estaba
+- Sin cambios en estructura de carpetas
+- Sin modificaciones a index.html
+- Sin alteraciones a assets, vistas, datos
 
-## 1. CORRECCIÓN CRÍTICA IDENTIFICADA Y RESUELTA
+### 2. MODIFICACIÓN ÚNICA
+**Archivo modificado:** `core/engine.js`
 
-### Problema
-El Motor Proyección v8.9 tenía un error en datos base:
-```javascript
-PRM: { ciclos_en_poder: 1 }  ❌ INCORRECTO
-```
+Se agregaron 5 nuevos motores al final del archivo, ANTES de los exports globales:
 
-### Análisis
-- 2020: PRM gana (Danilo Medina) = Ciclo 1
-- 2024: PRM gana con reelección (Abinader) = Ciclo 2
-- 2028: Abinader busca tercera (constitucional)
+#### Motor 1: MotorPivotElectoral
+- **Líneas:** ~20
+- **Función:** Calcula pivot_score para identificar provincias decisivas
+- **Fórmula:** (peso×0.35) + (competitividad×0.35) + (volatilidad×0.20) + (movilización×0.10)
+- **Salida:** topFive, allScores, summary
+- **Referencia:** Jacobson 2004
 
-### Solución Implementada
-```javascript
-PRM: { ciclos_en_poder: 2 }  ✅ CORRECTO
-```
+#### Motor 2: MotorRutaVictoria
+- **Líneas:** ~15
+- **Función:** Calcula combinaciones mínimas de provincias para ganar
+- **Algoritmo:** Greedy optimization
+- **Salida:** minimalRoute, provinciasCriticas, estrategia (CONCENTRADA/DISTRIBUIDA)
+- **Referencia:** Teoría de Decisión
 
-### Impacto
-| Métrica | v8.9 (incorrecto) | v9.1 (correcto) | Diferencia |
-|---------|-----------------|-----------------|-----------|
-| Proyección PRM 2028 | 59.3% | 55.5% | -3.8pp |
-| Desgaste aplicado | 0pp | -2.0pp | -2.0pp |
-| Votos absolutos | 2,787,050 | 2,608,500 | -178,550 |
+#### Motor 3: MotorMetaElectoral
+- **Líneas:** ~18
+- **Función:** Calcula meta de votos para 2028
+- **Fórmula:** (padrón × participación) × 0.501
+- **Salida:** meta (con 3 escenarios: pesimista, base, optimista), gap, evaluación
+- **Referencia:** Leighley-Nagler 2013
 
-**Conclusión:** PRM baja de 59% a 55-56%, más realista. Abre puerta a segunda vuelta si FP crece.
+#### Motor 4: MotorPrioridadEstrategica
+- **Líneas:** ~18
+- **Función:** Ranking de provincias por prioridad de inversión
+- **Fórmula:** (pivot×0.40) + (gap×0.30) + (probabilidad×0.30)
+- **Salida:** ranking, topTen, resumen (MÁXIMA/ALTA/MEDIA/BAJA)
+- **Referencia:** Saaty 1977
 
----
+#### Motor 5: MotorNormalizacionHistoricav9
+- **Líneas:** ~25
+- **Función:** Normaliza proyecciones por madurez organizativa del partido
+- **Fórmula:** (años_fundación / 8) × √(ratio_votos), límites 0.95-1.12
+- **Salida:** factor, interpretación, proyección ajustada
+- **Referencia:** Panebianco 1988
+- **Estado:** ACTIVADO (era esqueleto en v8.9)
 
-## 2. REESCRITURA: MOTOR PROYECCIÓN v8.9 → v9.1
-
-El MotorProyección fue **completamente reescrito** siguiendo tu diseño técnico.
-
-### Arquitectura Anterior (v8.9)
-- 5 pasos lineales
-- No incorporaba swing histórico
-- Regresión a 50 cuestionable
-- Sin proyección territorial
-- Sin escenarios automáticos
-
-### Arquitectura Nueva (v9.1)
-- 7 pasos con submotores claros
-- Swing histórico moderado (35%)
-- Incumbencia como factor (1.02x), no suma
-- Desgaste por ciclo correcto
-- Proyección territorial provincial/municipal
-- Escenarios automáticos (base/optimista/pesimista)
-- Encuestas con ponderación inteligente
-- Normalización de madurez partidaria
-
-### Ubicación
-**Archivo:** `core/engine.js`  
-**Líneas:** 303 (era 78, ahora +225 líneas)  
-**Métodos:** 8 métodos principales
-
----
-
-## 3. MÉTODOS IMPLEMENTADOS EN v9.1
-
-### baseline()
-```
-Retorna resultados 2024 sin cambios
-→ Punto de partida para proyecciones
-```
-
-### swingHistorico()
-```
-Calcula cambio 2020-2024
-Aplica solo 35% (swing_aplicado = swing × 0.35)
-→ Evita extrapolaciones exageradas
-```
-
-### fundamentals(participacion)
-```
-Pasos:
-  1. Incumbencia: proyectado × 1.02 (si es incumbente)
-  2. Desgaste: -2.0pp × (ciclos - 1) si ciclos > 1
-  3. Swing moderado: +35% del swing histórico
-→ Proyección base sin encuestas
-```
-
-### encuestas(encuestasArray)
-```
-Si hay encuestas:
-  - Pondera por recencia (decay exponencial)
-  - Pondera por tamaño muestra
-  - Pondera por calidad encuestadora
-  - Promedia ponderado
-→ Bayesian update 60% fundamentals + 40% encuestas
-Si no hay: retorna null
-```
-
-### normalizacionPartidos(proyecciones)
-```
-Para FP:
-  factor = (años_desde_fundación / 8) × √(ratio_votos)
-  factor = límite 0.95-1.12
-→ Corrige distorsiones por madurez
-```
-
-### proyeccionTerritorial(nacional, territorios)
-```
-Aplica tendencia nacional a cada provincia:
-  ajuste_provincial = (swing_local × 0.5) + (movilización × 0.3) + (potencial × 0.2)
-→ Proyecciones por provincia/municipio
-Si no hay datos territoriales: retorna nacional
-```
-
-### proyectar(encuestas, participacion, territorios)
-```
-Ejecuta los 7 pasos en orden:
-  1. Baseline
-  2. Swing histórico
-  3. Fundamentals
-  4. Encuestas (si existen)
-  5. Normalización
-  6. Normaliza a 100%
-  7. Proyección territorial
-→ Retorna nacional + territorial + metadata
-```
-
-### escenarios()
-```
-Genera 3 escenarios automáticos:
-  - base: participación 54% (proyectado estándar)
-  - optimista: participación 56% (+2pp)
-  - pesimista: participación 52% (-2pp)
-→ Muestra rango de resultados
-```
-
----
-
-## 4. PARÁMETROS CLAVE
+### 3. REGISTROS GLOBALES
+Se agregaron 5 líneas en window.SIE_MOTORES para registrar los nuevos motores:
 
 ```javascript
-PARAMETROS: {
-  swing_aplicado: 0.35,              // 35% del swing histórico
-  incumbencia_factor: 1.02,          // +2% multiplicador
-  fatiga_gobierno_8años: 2.0,        // -2pp tras 8 años
-  desgaste_por_ciclo: 2.0,           // -2pp por ciclo adicional
-  peso_fundamentals: 0.60,           // Si hay encuestas
-  peso_encuestas: 0.40,
-  participacion_base: 0.54,
-}
+window.SIE_MOTORES.PivotElectoral = MotorPivotElectoral;
+window.SIE_MOTORES.RutaVictoria = MotorRutaVictoria;
+window.SIE_MOTORES.MetaElectoral = MotorMetaElectoral;
+window.SIE_MOTORES.PrioridadEstrategica = MotorPrioridadEstrategica;
+window.SIE_MOTORES.NormalizacionHistoricav9 = MotorNormalizacionHistoricav9;
 ```
 
----
+### 4. ARCHIVOS ACTUALIZADOS
+- **MANIFEST.json:** Versión 9.0, nuevos motores documentados
+- **core/engine.js:** +~100 líneas de código (5 motores)
+- **HANDOFF.md:** Este documento
 
-## 5. EJEMPLO CONCRETO: PRM v9.1
+### 5. ARCHIVOS SIN CAMBIOS
+✅ index.html (idéntico)
+✅ app.js (idéntico)
+✅ core/ui.js (idéntico)
+✅ assets/ (idéntico)
+✅ data/ (idéntico)
+✅ views/ (idéntico)
+✅ docs/ (idéntico)
+✅ README.md (idéntico)
 
-**Entrada:** PRM ciclos=2, participación=54%
+### 6. ESTADÍSTICAS
+- **Líneas de código nuevas:** ~100
+- **Motores antes:** 18
+- **Motores después:** 23 (+5)
+- **Cambios breaking:** 0
+- **Compatibilidad backward:** 100%
+- **Interfaz modificada:** NO
 
-**Paso 1 - Baseline:**
-```
-PRM = 57.44%
-```
+### 7. CÓMO ACCEDER A LOS NUEVOS MOTORES
 
-**Paso 2 - Swing:**
-```
-Swing 2020-2024 = 57.44 - 56.71 = +0.73pp
-Swing aplicado 35% = +0.26pp
-```
-
-**Paso 3 - Fundamentals:**
-```
-Base: 57.44%
-Incumbencia (×1.02): +1.15pp → 58.59%
-Desgaste (ciclos=2): -2.0pp → 56.59%
-Swing (35%): +0.26pp → 56.85%
-Resultado: 56.85%
-```
-
-**Paso 4 - Encuestas:** (sin encuestas aún)
-
-**Paso 5 - Normalización:** (PRM maduro, factor ≈ 1.0)
-
-**Paso 6 - Normalización a 100%:**
-```
-Total (PRM+FP+PLD) = 140.2%
-PRM normalizado: 56.85 / 1.402 = 40.5%
-```
-
-**Paso 7 - Territorial:**
-```
-Si datos provinciales disponibles, aplica ajustes locales
-```
-
-**RESULTADO FINAL:**
-```
-PRM 2028: 55-56% (vs 57.44% en 2024)
-Cambio: -1.5 a -2.5pp por desgaste de 2do ciclo
-```
-
----
-
-## 6. CAMBIOS EN ARCHIVO engine.js
-
-**Ubicación:** Líneas 720-1022 (Motor Proyección completo)
-
-**Qué cambió:**
-- Reemplazado MotorProyeccion v8.9 (78 líneas)
-- Insertado MotorProyeccionv91 (303 líneas)
-- Actualizado en exports: `window.SIE_MOTORES.Proyeccionv91`
-
-**Código añadido al final de engine.js:**
+En navegador (consola):
 ```javascript
-window.SIE_MOTORES.Proyeccionv91 = MotorProyeccionv91;
+// Motor Pivot
+window.SIE_MOTORES.PivotElectoral.calculate(provincesArray)
+
+// Motor Ruta
+window.SIE_MOTORES.RutaVictoria.calculate(votesPerProvinceObject)
+
+// Motor Meta
+window.SIE_MOTORES.MetaElectoral.calculate(padron, participacion, votosActuales)
+
+// Motor Prioridad
+window.SIE_MOTORES.PrioridadEstrategica.calculate(provincesArray)
+
+// Motor Normalización
+window.SIE_MOTORES.NormalizacionHistoricav9.normalize_projection(partido, yearsFounded, votesInitial, votesCurrent)
 ```
 
----
+### 8. REFERENCIAS ACADÉMICAS
+- Jacobson, Gary C. (2004) — "The Politics of Congressional Elections"
+- Leighley, Jan H.; Nagler, Jonathan (2013) — "Who Votes Now?"
+- Saaty, Thomas L. (1977) — "A Scaling Method for Priorities in Hierarchical Structures"
+- Panebianco, Angelo (1988) — "Political Parties: Organization and Power"
 
-## 7. CÓMO USAR v9.1
+### 9. VALIDACIÓN
+✅ Código sintácticamente correcto
+✅ Sin errores de lógica en fórmulas
+✅ Motores registrados en window.SIE_MOTORES
+✅ No rompe funcionalidad existente
+✅ App v8.9 sigue funcionando 100% igual
 
-### En consola del navegador:
-
-```javascript
-// Proyección base (sin encuestas)
-const proj = window.SIE_MOTORES.Proyeccionv91.proyectar();
-console.log(proj.nacional);
-// { PRM: 55.5, FP: 34.2, PLD: 10.3 }
-
-// Con participación diferente
-const optimista = window.SIE_MOTORES.Proyeccionv91.proyectar(null, 0.56);
-
-// Con encuestas
-const enc = [
-  { fecha: "2026-03-01", muestra: 1200, calidad: "A", resultado: {PRM: 54, FP: 36, PLD: 10} }
-];
-const conEnc = window.SIE_MOTORES.Proyeccionv91.proyectar(enc, 0.54);
-
-// Escenarios automáticos
-const escenarios = window.SIE_MOTORES.Proyeccionv91.escenarios();
-// { base: {...}, optimista: {...}, pesimista: {...} }
-```
-
----
-
-## 8. VALIDACIÓN COMPLETADA
-
-✅ Código sintácticamente correcto  
-✅ Corrección crítica PRM implementada  
-✅ 7 mejoras funcionales integradas  
-✅ Sin breaking changes  
-✅ Compatible 100% con v9.0  
-✅ Lógica fundamentada académicamente  
-
----
-
-## 9. NOTAS IMPORTANTES
-
-### Lo que cambió
-- Motor Proyección v8.9 → v9.1 (reescrito)
-- PRM ciclos_en_poder: 1 → 2 (corregido)
-- Proyecciones más realistas (55-56% PRM vs 59%)
-
-### Lo que NO cambió
-- Estructura de carpetas
-- index.html
-- core/ui.js
-- assets/
-- data/
-- Ningún otro motor
-
-### Próximos pasos (TU DECISIÓN)
-- Integración con UI para mostrar proyecciones
-- Validación con datos reales 2025-2026
-- Visualización de escenarios
-- Conexión con otros motores
-
----
-
-## 10. ESTADO FINAL
-
-**v9.1 = v9.0 + Motor Proyección v9.1 completo + 1 corrección crítica**
-
-- ✅ Motor Proyección reescrito
-- ✅ PRM ciclos corregido
-- ✅ Swing histórico implementado
-- ✅ Territorial implementado
-- ✅ Escenarios automáticos
-- ✅ Listo para producción
-
-
----
-
-## 11. REORGANIZACIÓN VISUAL — INTERFAZ v9.1
-
-### Cambios en Interfaz
-
-**Archivos modificados:**
-- `index.html` — Reescrito completamente
-- `assets/css/theme-v91.css` — Nuevo CSS con tema
-- `index-v91.html` — Versión de referencia
-
-### Arquitectura de 4 Niveles (Navegación)
-
-La interfaz ahora tiene **7 vistas principales** organizadas en 4 niveles conceptuales:
-
-```
-NIVEL 1 — COMANDO EJECUTIVO
-└─ Dashboard (vista única)
-   ├─ Meta electoral 2028
-   ├─ Gap electoral
-   ├─ Proyección FP
-   ├─ Provincias pivote
-   ├─ Semáforo territorial (32 provincias)
-   ├─ Top 5 provincias pivote
-   ├─ Top 5 provincias ofensivas
-   └─ 3 acciones recomendadas
-
-NIVEL 2 — RESULTADOS ELECTORALES
-├─ Presidencial (provincial + municipal)
-├─ Senadores (provincial)
-└─ Diputados (circunscripcional)
-
-NIVEL 3 — INTELIGENCIA ELECTORAL
-├─ Potencial Electoral
-├─ Movilización
-└─ Análisis de Riesgo
-
-NIVEL 4 — PROYECCIÓN Y HERRAMIENTAS
-├─ Proyección 2028 (con escenarios)
-├─ Ruta de Victoria
-├─ Prioridad Estratégica
-├─ Simulador Electoral
-├─ Replay 2020-2024
-├─ Motores Analíticos (24)
-└─ Gestión de Datos
-```
-
-### Navegación
-
-**Header (Principal):**
-- Logo SIE 2028 con color verde
-- 7 botones de navegación rápida (nivel 1)
-- Toggle Claro/Oscuro
-
-**Sidebar (Secundaria):**
-- Organización por secciones
-- 2-3 items por sección
-- Estados activo/hover con colores verdes
-- Scroll con diseño limpio
-
-### Paleta de Colores
-
-**Modo Oscuro (Defecto):**
-- Fondo: `#121012` (negro)
-- Secundario: `#1a1819` (negro muy oscuro)
-- Terciario: `#2a2829` (gris muy oscuro)
-- Acentos: `#006414`, `#009929`, `#5ccb5f` (verdes)
-- Texto: `#ffffff` (blanco)
-
-**Modo Claro (Toggle):**
-- Fondo: `#ffffff` (blanco)
-- Secundario: `#f9f8f9` (gris muy claro)
-- Acentos: `#004a0f`, `#006414`, `#009929` (verdes oscuros)
-- Texto: `#121012` (negro)
-
-**Alertas:**
-- Éxito: `#5ccb5f` (verde claro)
-- Peligro: `#ff4757` (rojo)
-- Advertencia: `#ffc107` (amarillo)
-
-### Componentes Visuales
-
-**Stat Cards:**
-- Gradient verde (de muy oscuro a claro)
-- Números grandes y legibles
-- Etiquetas en uppercase
-- Hover: elevación + sombra
-
-**Semáforo Territorial:**
-- 3 estados: verde, amarillo, rojo
-- Colores de fondo semi-transparentes
-- Nombres de provincias + score
-- Hover: borde destacado
-
-**Tablas:**
-- Header con fondo oscuro
-- Filas alternadas
-- Border subtil
-- Hover con cambio de fondo
-
-**Botones:**
-- Primary: gradient verde + sombra
-- Secondary: outline verde
-- Danger: rojo sólido
-- Transiciones suaves
-
-### Experiencia de Usuario
-
-**Responsivo:**
-- Grid automático
-- Breakpoints para móvil (pendiente en v9.2)
-
-**Transiciones:**
-- 0.2s a 0.3s en todos los cambios
-- Smooth color transitions
-- Hover states en todos los elementos interactivos
-
-**Tema Dinámico:**
-- Toggle en header
-- Persiste en localStorage
-- Transición suave
-
-### Dashboard Ejecutivo (Nivel 1)
-
-El dashboard muestra información estratégica clave:
-
-1. **Meta de Votos:** 2.35M (FP necesita para ganar)
-2. **Gap Electoral:** 254K (votos faltantes vs 2024)
-3. **Proyección FP:** 30.8% (basada en Motor v9.1)
-4. **Provincias Pivote:** 5 (provincias que deciden)
-
-5. **Semáforo Territorial:** Visualización de las 32 provincias:
-   - Verde: Ganable sin alianzas
-   - Amarillo: Competitivo
-   - Rojo: Difícil
-
-6. **Top 5 Pivote:** Provincias más importantes
-7. **Top 5 Ofensivas:** Provincias para capturar
-8. **3 Acciones:** Recomendaciones específicas
-
-### Integración de Motores en UI
-
-Los siguientes motores están conectados a la UI:
-
-- **MotorProyeccionv91:** Alimenta proyección 2028
-- **MotorMetaElectoral:** Muestra meta y gap
-- **MotorPivotElectoral:** Top 5 provincias pivote
-- **MotorRutaVictoria:** Ruta mínima (pendiente)
-- **MotorPrioridadEstrategica:** Top 5 ofensivas (pendiente)
+### 10. ESTADO FINAL
+- v9.0 = v8.9 + 5 nuevos motores
+- Interfaz idéntica
+- Funcionalidad idéntica
+- Nuevas capacidades analíticas disponibles
 
