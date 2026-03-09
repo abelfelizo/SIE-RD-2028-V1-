@@ -177,13 +177,14 @@
   <!-- NIVEL 3: INTELIGENCIA ESTRATÉGICA -->
   <div id="view-potencial" class="view">
     <div class="section-title">🎯 Potencial Electoral por Territorio</div>
-    <!-- Selector de nivel electoral -->
+    <!-- Selector de nivel electoral y granularidad territorial -->
     <div class="level-selector" id="pot-level-bar">
-      <span class="level-label">Nivel:</span>
+      <span class="level-label">Nivel electoral:</span>
       <button class="level-btn active" data-level="presidencial">Presidencial</button>
       <button class="level-btn" data-level="senadores">Senadores</button>
       <button class="level-btn" data-level="diputados">Diputados</button>
-      <button class="level-btn" data-level="municipio">Municipio</button>
+      <span class="level-label" style="margin-left:.5rem">Granularidad:</span>
+      <button class="level-btn" data-level="municipio">Por municipio</button>
     </div>
     <div class="grid g2" style="margin-bottom:1rem">
       <div class="card">
@@ -224,7 +225,8 @@
       <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
       <button class="level-btn" data-nivel="senadores">Senadores</button>
       <button class="level-btn" data-nivel="diputados">Diputados</button>
-      <button class="level-btn" data-nivel="municipio">Municipio</button>
+      <span class="level-label" style="margin-left:.5rem">Territorial:</span>
+      <button class="level-btn" data-nivel="municipio">Por municipio</button>
     </div>
     <div class="kpi-grid" id="mov-kpis"></div>
     <div class="card">
@@ -247,7 +249,8 @@
       <span class="level-label" style="margin-left:.75rem">Nivel:</span>
       <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
       <button class="level-btn" data-nivel="senadores">Senadores</button>
-      <button class="level-btn" data-nivel="municipio">Municipio</button>
+      <span class="level-label" style="margin-left:.5rem">Territorial:</span>
+      <button class="level-btn" data-nivel="municipio">Por municipio</button>
     </div>
     <div class="kpi-grid" id="riesgo-kpis"></div>
     <div class="grid g2">

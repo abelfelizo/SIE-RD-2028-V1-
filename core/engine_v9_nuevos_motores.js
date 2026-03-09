@@ -198,43 +198,7 @@ const MotorPrioridadEstrategica = {
 };
 
 // ============================================================================
-// MOTOR M17 — NORMALIZACIÓN HISTÓRICA (ACTIVADO)
-// Referencia: Panebianco 1988 - Institutionalization of Political Parties
-// ============================================================================
-const MotorNormalizacionHistorica = {
-  status: 'ACTIVE',
-  
-  normalize_projection(partido, yearsFounded, votesInitial, votesCurrent) {
-    const currentYear = 2024;
-    const yearsSinceFounded = currentYear - yearsFounded;
-    const votesRatio = votesCurrent / votesInitial;
-    const maturityFactor = (yearsSinceFounded / 8) * Math.sqrt(votesRatio);
-    const adjustedFactor = Math.max(0.95, Math.min(1.12, maturityFactor));
-    
-    return {
-      partido,
-      yearsSinceFounded,
-      votesRatio,
-      factor: adjustedFactor,
-      interpretation: 
-        adjustedFactor < 0.95 ? 'Ajuste máximo (partido muy nuevo)' :
-        adjustedFactor > 1.12 ? 'Ajuste máximo (partido maduro)' :
-        'Ajuste normal'
-    };
-  },
-
-  apply_to_projection(projectionBase, partido, yearsFounded, votesInitial, votesCurrent) {
-    const normalization = this.normalize_projection(partido, yearsFounded, votesInitial, votesCurrent);
-    const adjustedProjection = projectionBase * normalization.factor;
-    
-    return {
-      proyeccionBase: projectionBase,
-      factor_M17: normalization.factor,
-      proyeccionAjustada: adjustedProjection,
-      diferencia: adjustedProjection - projectionBase
-    };
-  }
-};
+// MotorNormalizacionHistorica está definido en engine.js — no duplicar aquí
 
 // ============================================================================
 // EXPORTAR NUEVOS MOTORES
@@ -244,8 +208,7 @@ if (typeof module !== 'undefined' && module.exports) {
     MotorPivotElectoral,
     MotorRutaVictoria,
     MotorMetaElectoral,
-    MotorPrioridadEstrategica,
-    MotorNormalizacionHistorica
+    MotorPrioridadEstrategica
   };
 }
 

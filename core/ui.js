@@ -154,7 +154,13 @@ function renderDashboard(){
     +kpi('blue','Ganador Presidencial',kpis.ganador_presidencial,kpis.pct_ganador+'% \u2014 bloque')
     +kpi('green','Padr\u00f3n Oficial',fmt(kpis.padron_oficial),'Inscritos JCE 2024')
     +kpi('gold','Participaci\u00f3n',kpis.participacion+'%',fmt(kpis.votos_emitidos)+' emitidos')
-    +kpi('blue','PRM Senadores','32/32','Todas las provincias')
+    +(function(){
+      var sc = M.Curules.getSenadorePorCoalicion();
+      var prmC = (sc.find(function(x){return x.id==='PRM-coalicion';})||{curules:0}).curules;
+      var fpC  = (sc.find(function(x){return x.id==='FP-coalicion';})||{curules:0}).curules;
+      var otros = 32 - prmC - fpC;
+      return kpi('blue','Senadores PRM bloque',prmC+'/32','FP: '+fpC+' · Otros: '+otros)
+    })()
     +kpi('purple','Curules',kpis.curules_totales,'Legislativo total')
     +kpi('blue','ENPP Legislativo',kpis.enpp_legislativo,'Laakso-Taagepera 1979')
     +kpi('orange','Margen Presidencial',kpis.margen_presidencial+'pp','1ro vs 2do bloque')
