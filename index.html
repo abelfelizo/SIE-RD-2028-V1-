@@ -12,7 +12,7 @@
   <div class="brand">
     <span style="font-size:1.3rem">⚡</span>
     <span class="brand-name">SIE 2028</span>
-    <span class="badge">v9.2</span>
+    <span class="badge">v9.3</span>
     <span class="badge-ds">DATASET 2024</span>
   </div>
   <div style="display:flex;gap:.75rem;align-items:center">
@@ -376,7 +376,7 @@
   </div>
 
   <div id="view-proyeccion" class="view">
-    <div class="section-title">📈 Proyección Electoral 2028 — v9.2</div>
+    <div class="section-title">📈 Proyección Electoral 2028 — v9.3</div>
 
     <!-- Escenarios automáticos -->
     <div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">
@@ -399,7 +399,7 @@
 
     <div class="grid g2">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Proyección nacional</span><span class="card-badge">Fundamentals + Swing v9.2</span></div>
+        <div class="card-hdr"><span class="card-title">Proyección nacional</span><span class="card-badge">Fundamentals + Swing v9.3</span></div>
         <div id="proy-fundamentals"></div>
         <p class="note">Swing histórico 35% · Incumbencia ×1.02 · Fatiga -2pp · Normalización Panebianco 1988</p>
       </div>
@@ -423,6 +423,24 @@
         <div class="card-hdr"><span class="card-title">Encuestas — Carga manual</span><span class="card-badge">Silver/538 weighting</span></div>
         <div id="encuestas-panel"></div>
       </div>
+    </div>
+
+    <!-- Proyección Senadores 2028 -->
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr">
+        <span class="card-title">Proyección Senadores 2028</span>
+        <span class="card-badge">Por provincia · Swing presidencial</span>
+      </div>
+      <div id="proy-sen-territorial"></div>
+    </div>
+
+    <!-- Proyección Diputados 2028 -->
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr">
+        <span class="card-title">Proyección Diputados 2028</span>
+        <span class="card-badge">Top circunscripciones · FP</span>
+      </div>
+      <div id="proy-dip-territorial"></div>
     </div>
   </div>
 
@@ -486,7 +504,7 @@
   </div>
 
   <div id="view-motores" class="view">
-    <div class="section-title">⚙ Estado de Motores — SIE 2028 v9.2</div>
+    <div class="section-title">⚙ Estado de Motores — SIE 2028 v9.3</div>
     <div class="grid g2">
       <div class="card"><div class="card-hdr"><span class="card-title">Activos</span></div><div id="motores-on"></div></div>
       <div class="card"><div class="card-hdr"><span class="card-title">Desactivados</span></div><div id="motores-off"></div></div>

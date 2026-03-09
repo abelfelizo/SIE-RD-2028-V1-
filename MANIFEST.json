@@ -1,6 +1,6 @@
 {
   "nombre": "SIE 2028 v9.0",
-  "version": "9.2",
+  "version": "9.3",
   "fecha": "2026-03-09",
   "estado": "PRODUCCIÓN",
   "cambios_v9_0": {
@@ -55,5 +55,5 @@
   },
   "motores_activos": 22,
   "motores_inactivos": 1,
-  "nota": "v9.2: Fix participación/emitidos (normalización totales), Simulador tri-nivel (presidencial/senadores/diputados) con encuestas+participación+alianza, Motor Objetivo tri-nivel con metas configurables, bindLevelBtns sim+obj"
+  "nota": "v9.3: MotorProyeccion v9.3 (7 pasos: Baseline>Swing>Fundamentals>Encuestas>EstructuraPartido>Territorial>Ensamblaje), NAV handler llama render en todas las vistas, renderProyeccion() separada + proyeccion territorial senadores/diputados"
 }

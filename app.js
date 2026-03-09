@@ -1,5 +1,5 @@
 // ================================================================
-// SIE 2028 — ENTRY POINT v9.2
+// SIE 2028 — ENTRY POINT v9.3
 // Carga datasets 2024 + 2020, expone globals para engine + UI
 // ================================================================
 
@@ -98,13 +98,13 @@
     return;
   }
 
-  console.log('✅ SIE 2028 v9.2 · 2024 + 2020 ACTIVOS · Boot OK');
+  console.log('✅ SIE 2028 v9.3 · 2024 + 2020 ACTIVOS · Boot OK');
 })();
 
 function loadScript(src) {
   return new Promise(function(resolve, reject) {
     var s = document.createElement('script');
-    s.src = src + '?v=92';
+    s.src = src + '?v=93';
     s.onload = resolve;
     s.onerror = function() { reject(new Error('No se pudo cargar ' + src)); };
     document.body.appendChild(s);

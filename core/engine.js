@@ -717,8 +717,216 @@ const MotorEscenarios = {
 //     (Stimson "Public Support for American Presidents" adaptado)
 //   - Ajuste por encuestas: Bayesian update cuando hay polls disponibles
 // ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────
+// MOTOR 11 — PROYECCION ELECTORAL v9.3
+// Arquitectura: 7 pasos metodológicos independientes
+//
+// PRINCIPIO CLAVE: Base = resultados presidenciales 2024
+// Legislativo solo para estructura partidaria y ratio de coalición
+//
+// Niveles: Presidencial (prov/mun) | Senadores (prov) | Diputados (circ)
+//
+// Pipeline:
+//   calcularBaseline()       → resultado_2024 como punto de partida
+//   calcularSwingHistorico() → delta 2020→2024 × 0.35 (amortiguado)
+//   calcularFundamentals()   → incumbencia, desgaste, regresión a media
+//   calcularEncuestas()      → Bayesian update (modelo×0.60 + encuestas×0.40)
+//   calcularEstructuraPartido() → ratio presidencial/legislativo
+//   proyeccionTerritorial()  → swing territorial × 0.5 + mov × 0.3 + pot × 0.2
+//   ensamblarProyeccion()    → output estructurado con 3 escenarios
+// ─────────────────────────────────────────────────────────────────
 const MotorProyeccion = {
-  // Parámetros del modelo (calibrados en literatura comparada)
+  // ── Parámetros calibrados ──
+  PARAMS: {
+    incumbencia_bonus: 3.5,      // Erikson & Wlezien (2012): ~3.5pp
+    desgaste_por_ciclo: 2.0,     // Desgaste por ciclo adicional en poder
+    regresion_media: 0.15,       // Mean reversion Silver/538: 15% hacia 50%
+    swing_factor: 0.35,          // Swing aplicado solo al 35% (evita extrapolación)
+    peso_encuesta: 0.40,         // Bayesian: encuestas pesan 40%
+    peso_modelo: 0.60,           // Bayesian: modelo fundamentals pesa 60%
+    // Pesos proyección territorial
+    peso_swing_local: 0.50,
+    peso_movilizacion: 0.30,
+    peso_potencial: 0.20,
+  },
+
+  // ── Base histórica PRESIDENCIAL (fuente: JCE 2020 y 2024) ──
+  BASE_PRESIDENCIAL: {
+    PRM: { pct_2024: 57.44, pct_2020: 52.51, es_incumbente: true,  ciclos: 1 },
+    FP:  { pct_2024: 28.85, pct_2020: 8.90,  es_incumbente: false, ciclos: 0 },
+    PLD: { pct_2024: 10.39, pct_2020: 37.46, es_incumbente: false, ciclos: 0 },
+  },
+
+  // ── PASO 1: Baseline = resultados presidenciales 2024 ──
+  calcularBaseline() {
+    const out = {};
+    Object.entries(this.BASE_PRESIDENCIAL).forEach(([p, b]) => {
+      out[p] = { baseline: b.pct_2024, pct_2020: b.pct_2020,
+                 pct_2024: b.pct_2024, es_incumbente: b.es_incumbente, ciclos: b.ciclos };
+    });
+    return out;
+  },
+
+  // ── PASO 2: Swing histórico presidencial 2020→2024 ──
+  calcularSwingHistorico() {
+    const out = {};
+    Object.entries(this.BASE_PRESIDENCIAL).forEach(([p, b]) => {
+      const delta   = +(b.pct_2024 - b.pct_2020).toFixed(2);
+      const aplicado = +(delta * this.PARAMS.swing_factor).toFixed(2);
+      out[p] = { pct_2020: b.pct_2020, pct_2024: b.pct_2024, delta, aplicado };
+    });
+    return out;
+  },
+
+  // ── PASO 3: Fundamentals (incumbencia + desgaste + regresión) ──
+  calcularFundamentals(baseline) {
+    const p = this.PARAMS;
+    const swing = this.calcularSwingHistorico();
+    const out = {};
+    Object.entries(baseline).forEach(([partido, b]) => {
+      let v = b.baseline;
+      // Swing histórico amortiguado
+      v += (swing[partido]?.aplicado || 0);
+      // Incumbencia
+      if (b.es_incumbente) {
+        v += p.incumbencia_bonus;
+        if (b.ciclos > 1) v -= p.desgaste_por_ciclo * (b.ciclos - 1);
+      }
+      // Regresión a la media
+      v -= (v - 50) * p.regresion_media;
+      out[partido] = { ...b, fundamentals: +v.toFixed(2) };
+    });
+    return out;
+  },
+
+  // ── PASO 4: Encuestas (Bayesian update) ──
+  calcularEncuestas(fundamentals, encuestas) {
+    const p = this.PARAMS;
+    const out = {};
+    Object.entries(fundamentals).forEach(([partido, d]) => {
+      let v = d.fundamentals;
+      if (encuestas && encuestas[partido] !== undefined) {
+        v = v * p.peso_modelo + encuestas[partido] * p.peso_encuesta;
+      }
+      out[partido] = { ...d, con_encuestas: +v.toFixed(2),
+                       usa_encuestas: !!(encuestas && encuestas[partido] !== undefined) };
+    });
+    return out;
+  },
+
+  // ── PASO 5: Estructura partidaria (ratio presidencial / legislativo) ──
+  calcularEstructuraPartido() {
+    // Votos presidenciales 2024 vs promedio legislativo (diputados+senadores)
+    const PRES  = { PRM: 57.44, FP: 28.85, PLD: 10.39 };
+    const LEG   = { PRM: 50.24, FP: 27.60, PLD: 11.80 }; // promedio dip+sen 2024
+    const out   = {};
+    Object.entries(PRES).forEach(([p, pres]) => {
+      const leg = LEG[p] || pres;
+      const ratio = leg > 0 ? +(pres / leg).toFixed(3) : 1;
+      const dependencia = ratio > 1.10 ? 'dependiente_aliados'
+                         : ratio < 0.95 ? 'infrautilizada'
+                         : 'equilibrada';
+      out[p] = { pres_2024: pres, leg_2024: leg, ratio, dependencia,
+                 // Factor de ajuste: dependencia reduce proyección (riesgo ruptura alianza)
+                 factor_ajuste: dependencia === 'dependiente_aliados' ? 0.97 : 1.00 };
+    });
+    return out;
+  },
+
+  // ── PASO 6: Proyección territorial (provincia) ──
+  proyeccionTerritorial(escenario, participacion) {
+    const p    = this.PARAMS;
+    const swing = this.calcularSwingHistorico();
+    const provs = window._PROV_METRICS_PRES || [];
+    if (!provs.length) return [];
+    return provs.map(prov => {
+      const swingFP  = swing.FP?.delta  || 0;
+      const swingPRM = swing.PRM?.delta || 0;
+      const mob  = prov.abstencion || 0;  // proxy movilización = abstención disponible
+      const pot  = prov.pct_fp || 0;
+      // FP
+      const fpBase   = prov.pct_fp  || 0;
+      const prmBase  = prov.pct_prm || 0;
+      const fpSwing  = swingFP  * p.swing_factor;
+      const fpAdj    = fpSwing * p.peso_swing_local + mob * 0.01 * p.peso_movilizacion + pot * 0.01 * p.peso_potencial;
+      const fpProy   = +Math.max(0, Math.min(100, fpBase + fpAdj)).toFixed(1);
+      const prmProy  = +Math.max(0, Math.min(100, prmBase + swingPRM * p.swing_factor * p.peso_swing_local)).toFixed(1);
+      const ganador  = fpProy > prmProy ? 'FP' : 'PRM';
+      return {
+        provincia:    prov.provincia,
+        provincia_id: prov.id,
+        pct_fp_base:  fpBase,
+        pct_fp_proy:  fpProy,
+        pct_prm_base: prmBase,
+        pct_prm_proy: prmProy,
+        ganador_proy: ganador,
+        margen_proy:  +(Math.abs(fpProy - prmProy)).toFixed(1),
+        inscritos:    prov.inscritos || 0,
+        riesgo:       prov.margen_pp < 5 ? 'alta' : prov.margen_pp < 12 ? 'media' : 'baja'
+      };
+    }).sort((a,b) => b.pct_fp_proy - a.pct_fp_proy);
+  },
+
+  // ── PASO 7: Ensamblaje final con 3 escenarios ──
+  ensamblarProyeccion(ajustes={}, encuestas=null) {
+    const baseline     = this.calcularBaseline();
+    const fundamentals = this.calcularFundamentals(baseline);
+    const conEncuestas = this.calcularEncuestas(fundamentals, encuestas);
+    const estructura   = this.calcularEstructuraPartido();
+
+    // Aplicar ajustes manuales + estructura
+    const withAdjust = {};
+    Object.entries(conEncuestas).forEach(([partido, d]) => {
+      const est = estructura[partido] || { factor_ajuste: 1 };
+      let v = d.con_encuestas * est.factor_ajuste + (ajustes[partido] || 0);
+      withAdjust[partido] = { ...d, pre_norm: +v.toFixed(2) };
+    });
+
+    // Normalizar
+    const total = Object.values(withAdjust).reduce((s,x)=>s+x.pre_norm,0);
+    const result = {};
+    Object.entries(withAdjust).forEach(([partido, d]) => {
+      result[partido] = {
+        base_2024:    d.pct_2024,
+        proyectado:   d.pre_norm,
+        proyectado_norm: +(d.pre_norm/total*100).toFixed(2),
+        usa_encuestas: d.usa_encuestas,
+        es_incumbente: d.es_incumbente,
+        estructura:    estructura[partido],
+        metodologia:   d.usa_encuestas ? 'Fundamentals+Encuestas(Bayesian)' : 'Fundamentals+Swing',
+        ajuste_normalizacion: MotorNormalizacionHistorica.factorAjusteProyeccion(partido),
+      };
+    });
+    return result;
+  },
+
+  // ── API pública — mantiene compatibilidad con ui.js ──
+  proyectar(ajustes={}, encuestas=null) {
+    return this.ensamblarProyeccion(ajustes, encuestas);
+  },
+
+  // ── Escenarios por participación ──
+  escenarios(encuestas=null) {
+    const gen = (participacion) => {
+      const res = this.ensamblarProyeccion({}, encuestas);
+      // Ajustar por participación vs base 54%
+      const factor = participacion / 0.54;
+      // Partidos de oposición se benefician más de alta participación
+      if (res.FP) res.FP.proyectado_norm = +Math.min(100, res.FP.proyectado_norm * (factor > 1 ? factor * 0.6 + 0.4 : 1)).toFixed(2);
+      if (res.PRM) res.PRM.proyectado_norm = +Math.min(100, res.PRM.proyectado_norm * (factor > 1 ? 1 : 1 + (1-factor)*0.3)).toFixed(2);
+      // Re-normalizar
+      const tot = Object.values(res).reduce((s,x)=>s+x.proyectado_norm,0);
+      Object.values(res).forEach(x => { x.proyectado_norm = +(x.proyectado_norm/tot*100).toFixed(2); });
+      return res;
+    };
+    return {
+      pesimista: gen(0.50),
+      base:      gen(0.54),
+      optimista: gen(0.58),
+    };
+  },
+
+  // ── Getters para compatibilidad con ui.js ──
   PARAMS: {
     incumbencia_bonus: 3.5,      // Erikson & Wlezien: ~3.5pp en promedio
     desgaste_por_ciclo: 2.0,     // Cada ciclo electoral adicional -2pp

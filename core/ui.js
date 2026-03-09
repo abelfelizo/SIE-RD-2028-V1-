@@ -102,12 +102,22 @@ document.getElementById('main-nav').addEventListener('click', function(e){
   var el = document.getElementById('view-'+id);
   if(el) el.classList.add('active');
   btn.classList.add('active');
-  if(id==='replay') renderReplay();
-  if(id==='exterior') renderExterior();
-  if(id==='historico') renderHistorico();
+  if(id==='dashboard')   renderDashboard();
+  if(id==='presidencial') renderPresidencial();
+  if(id==='senadores')    renderSenadores();
+  if(id==='diputados')    renderDiputados();
+  if(id==='exterior')     renderExterior();
+  if(id==='potencial')    renderPotencial();
+  if(id==='movilizacion') renderMovilizacion();
+  if(id==='riesgo')       renderRiesgo();
+  if(id==='historico')    renderHistorico();
+  if(id==='replay')       renderReplay();
   if(id==='simulador' && !window._simInit) initSimulador();
+  if(id==='simulador' && window._simInit)  runSimulation();
   if(id==='proyeccion' && !window._proyInit) initProyeccion();
+  if(id==='proyeccion' && window._proyInit)  renderProyeccion();
   if(id==='objetivo') renderObjetivo();
+  if(id==='motores')  renderMotores();
 });
 
 // Helpers
@@ -1298,6 +1308,20 @@ function initProyeccion(){
   renderProyEscenarios();
   renderProySwing();
   renderProyTerritorial();
+  renderProyTerritorialSenadores();
+  renderProyTerritorialDiputados();
+}
+
+// renderProyeccion: puede llamarse N veces (refresh) desde el nav
+function renderProyeccion(){
+  renderProyFundamentals(window._polls && window._polls.length
+    ? M.Encuestas.agregar(['PRM','FP','PLD'])
+    : null);
+  renderProyEscenarios();
+  renderProySwing();
+  renderProyTerritorial();
+  renderProyTerritorialSenadores();
+  renderProyTerritorialDiputados();
 }
 
 function renderProyEscenarios(){
@@ -1392,6 +1416,60 @@ function renderProyFundamentals(polls_agg){
       +'<div style="font-size:.68rem;color:var(--muted);margin-top:.2rem">Base 2024: '+d.base_2024+'% \u00b7 '+d.metodologia
       +(d.ajuste_normalizacion?' \u00b7 '+d.ajuste_normalizacion.razon:'')+'</div></div>';
   }).join('');
+}
+
+
+// ── Proyección territorial senadores 2028 ──
+function renderProyTerritorialSenadores(){
+  var el = document.getElementById('proy-sen-territorial');
+  if(!el) return;
+  var provSen = _PROV_SEN || [];
+  if(!provSen.length){ el.innerHTML='<p class="text-muted text-sm">Sin datos de senadores.</p>'; return; }
+  var swing = M.Proyeccion.calcularSwingHistorico ? M.Proyeccion.calcularSwingHistorico() : {};
+  var swingFP = swing.FP ? swing.FP.delta : 2.5;
+  var data = provSen.map(function(p){
+    var fpBase = p.pct_fp || (p.bloque_coalicion==='FP-coalicion'?p.pct_ganador:0);
+    var fpProy = +(fpBase + swingFP * 0.35).toFixed(1);
+    var prmBase = p.pct_prm || (p.bloque_coalicion==='PRM-coalicion'?p.pct_ganador:0);
+    var prmProy = +(prmBase - swingFP * 0.2).toFixed(1);
+    return { nombre:p.provincia, fpBase:fpBase, fpProy:fpProy, prmBase:prmBase, prmProy:prmProy,
+             ganadorActual:p.ganador, gana2028:fpProy>prmProy,
+             margen:p.margen_pp||0 };
+  });
+  var ganaFP = data.filter(function(d){return d.gana2028;}).length;
+  el.innerHTML = '<div style="font-size:.72rem;color:var(--muted);margin-bottom:.5rem">FP proyecta ganar '+ganaFP+'/32 provincias · Swing aplicado: '+(swingFP>0?'+':'')+swingFP+'pp × 0.35</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.35rem">'
+    +data.map(function(d){
+      var col = d.gana2028?'var(--fp)':'var(--muted)';
+      return '<div style="background:var(--bg3);border:1px solid '+(d.gana2028?'var(--fp)':'var(--border)')+';border-radius:var(--r);padding:.45rem .65rem">'
+        +'<div style="font-size:.75rem;font-weight:700;margin-bottom:.15rem">'+d.nombre+'</div>'
+        +'<div style="display:flex;justify-content:space-between;font-size:.7rem">'
+        +'<span style="color:var(--fp)">FP: '+d.fpBase+'% → '+d.fpProy+'%</span>'
+        +'<span style="color:'+col+'">'+(d.gana2028?'✅ WIN':'—')+'</span></div>'
+        +'<div style="font-size:.67rem;color:var(--muted)">PRM: '+d.prmBase+'% → '+d.prmProy+'%</div></div>';
+    }).join('')+'</div>';
+}
+
+// ── Proyección territorial diputados 2028 ──
+function renderProyTerritorialDiputados(){
+  var el = document.getElementById('proy-dip-territorial');
+  if(!el) return;
+  var provDip = _PROV_DIP || [];
+  if(!provDip.length){ el.innerHTML='<p class="text-muted text-sm">Sin datos de diputados.</p>'; return; }
+  var swing = M.Proyeccion.calcularSwingHistorico ? M.Proyeccion.calcularSwingHistorico() : {};
+  var swingFP = swing.FP ? swing.FP.delta : 2.5;
+  var data = provDip.map(function(p){
+    var fpBase = p.pct_fp||0;
+    var fpProy = +(fpBase + swingFP * 0.35).toFixed(1);
+    return { nombre:p.provincia, fpBase:fpBase, fpProy:fpProy, curules:p.curules_fp||0 };
+  }).sort(function(a,b){return b.fpProy-a.fpProy;});
+  el.innerHTML = '<div style="font-size:.72rem;color:var(--muted);margin-bottom:.4rem">Top circunscripciones FP — proyección 2028</div>'
+    +data.slice(0,12).map(function(d,i){
+      return '<div style="display:flex;align-items:center;gap:.5rem;padding:.3rem 0;border-bottom:1px solid var(--border)">'
+        +'<span style="font-size:.65rem;color:var(--muted);min-width:18px">'+(i+1)+'</span>'
+        +'<div style="flex:1"><div style="font-size:.77rem;font-weight:600">'+d.nombre+'</div></div>'
+        +'<span style="color:var(--fp);font-size:.8rem;font-weight:700">'+d.fpBase+'% → '+d.fpProy+'%</span></div>';
+    }).join('');
 }
 
 // ====== REPLAY ======
