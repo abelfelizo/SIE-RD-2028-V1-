@@ -926,77 +926,7 @@ const MotorProyeccion = {
     };
   },
 
-  // ── Getters para compatibilidad con ui.js ──
-  PARAMS: {
-    incumbencia_bonus: 3.5,      // Erikson & Wlezien: ~3.5pp en promedio
-    desgaste_por_ciclo: 2.0,     // Cada ciclo electoral adicional -2pp
-    regresion_media: 0.15,       // Mean reversion (Silver 538): 15% hacia 50%
-    peso_encuesta: 0.60,         // Cuando hay encuestas, pesan 60% (Bayesian)
-    peso_fundamentals: 0.40,     // Fundamentals pesan 40%
-  },
-
-  BASE_2024: {
-    PRM: { votos_pct: 57.44, es_incumbente: true,  ciclos_en_poder: 1 },
-    FP:  { votos_pct: 28.85, es_incumbente: false, ciclos_en_poder: 0 },
-    PLD: { votos_pct: 10.39, es_incumbente: false, ciclos_en_poder: 0 },
-  },
-
-  proyectar(ajustes={}, encuestas=null) {
-    const p = this.PARAMS;
-    const result = {};
-
-    Object.entries(this.BASE_2024).forEach(([partido, base]) => {
-      let proyectado = base.votos_pct;
-
-      // 1. Ajuste de incumbencia
-      if (base.es_incumbente) {
-        proyectado += p.incumbencia_bonus;
-        // Desgaste si lleva más de 1 ciclo
-        if (base.ciclos_en_poder > 1) {
-          proyectado -= p.desgaste_por_ciclo * (base.ciclos_en_poder - 1);
-        }
-      }
-
-      // 2. Regresión a la media (Silver/538): partidos muy fuertes tienden a bajar
-      const dist_media = proyectado - 50;
-      proyectado -= dist_media * p.regresion_media;
-
-      // 3. Bayesian update con encuestas si disponibles
-      if (encuestas && encuestas[partido] !== undefined) {
-        proyectado = proyectado * p.peso_fundamentals + encuestas[partido] * p.peso_encuesta;
-      }
-
-      // 4. Ajuste por normalización histórica (MotorNormalizacionHistorica)
-      // Aplica factor de madurez organizativa para partidos jóvenes (FP) o
-      // partidos con escisión (PLD). En modo PROXY usa estimación; en modo
-      // COMPLETO usa la data real 2020.
-      const factorHist = MotorNormalizacionHistorica.factorAjusteProyeccion(partido);
-      if (factorHist.multiplicador !== 1.00) {
-        const ajuste_hist = proyectado * (factorHist.multiplicador - 1);
-        proyectado += ajuste_hist;
-      }
-
-      // 5. Ajuste manual (offset del usuario)
-      proyectado += (ajustes[partido] || 0);
-
-      result[partido] = {
-        base_2024: base.votos_pct,
-        proyectado: +Math.max(0, Math.min(100, proyectado)).toFixed(2),
-        metodologia: encuestas ? 'Fundamentals+Encuestas' : 'Fundamentals',
-        es_incumbente: base.es_incumbente,
-        ajuste_normalizacion: factorHist.multiplicador !== 1.00
-          ? { multiplicador: factorHist.multiplicador, razon: factorHist.razon, modo: factorHist.modo }
-          : null
-      };
-    });
-
-    // Normalizar para que sumen 100%
-    const total = Object.values(result).reduce((s,x)=>s+x.proyectado,0);
-    Object.values(result).forEach(x => { x.proyectado_norm = +(x.proyectado/total*100).toFixed(2); });
-
-    return result;
-  }
-};
+}; // fin MotorProyeccion
 
 // ─────────────────────────────────────────────────────────────────
 // MOTOR 12: CRECIMIENTO DEL PADRÓN

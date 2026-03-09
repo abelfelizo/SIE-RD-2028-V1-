@@ -102,22 +102,26 @@ document.getElementById('main-nav').addEventListener('click', function(e){
   var el = document.getElementById('view-'+id);
   if(el) el.classList.add('active');
   btn.classList.add('active');
-  if(id==='dashboard')   renderDashboard();
-  if(id==='presidencial') renderPresidencial();
-  if(id==='senadores')    renderSenadores();
-  if(id==='diputados')    renderDiputados();
-  if(id==='exterior')     renderExterior();
-  if(id==='potencial')    renderPotencial();
-  if(id==='movilizacion') renderMovilizacion();
-  if(id==='riesgo')       renderRiesgo();
-  if(id==='historico')    renderHistorico();
-  if(id==='replay')       renderReplay();
-  if(id==='simulador' && !window._simInit) initSimulador();
-  if(id==='simulador' && window._simInit)  runSimulation();
-  if(id==='proyeccion' && !window._proyInit) initProyeccion();
-  if(id==='proyeccion' && window._proyInit)  renderProyeccion();
-  if(id==='objetivo') renderObjetivo();
-  if(id==='motores')  renderMotores();
+  try {
+    if(id==='dashboard')   renderDashboard();
+    if(id==='presidencial') renderPresidencial();
+    if(id==='senadores')    renderSenadores();
+    if(id==='diputados')    renderDiputados();
+    if(id==='exterior')     renderExterior();
+    if(id==='potencial')    renderPotencial();
+    if(id==='movilizacion') renderMovilizacion();
+    if(id==='riesgo')       renderRiesgo();
+    if(id==='historico')    renderHistorico();
+    if(id==='replay')       renderReplay();
+    if(id==='simulador' && !window._simInit) initSimulador();
+    if(id==='simulador' && window._simInit)  runSimulation();
+    if(id==='proyeccion' && !window._proyInit) initProyeccion();
+    if(id==='proyeccion' && window._proyInit)  renderProyeccion();
+    if(id==='objetivo') renderObjetivo();
+    if(id==='motores')  renderMotores();
+  } catch(navErr) {
+    console.error('SIE nav render error ['+id+']:', navErr.message);
+  }
 });
 
 // Helpers
@@ -163,7 +167,7 @@ function renderDashboard(){
   document.getElementById('leg-bar-list').innerHTML =
     legT.map(function(x){return bar(x.id+' \u00b7 '+M.Resultados.getPartidoNombre(x.id).substring(0,24),+(x.curules/total*100).toFixed(1),pc(x.id),x.curules+' curules');}).join('');
 
-  drawParliament('parl-canvas', legT, total);
+  setTimeout(function(){ try{ drawParliament('parl-canvas', legT, total); }catch(e){} }, 80);
   document.getElementById('parl-legend').innerHTML =
     legT.map(function(x){return '<div style="display:flex;align-items:center;gap:.35rem;font-size:.75rem">'
       +'<div style="width:9px;height:9px;border-radius:50%;background:'+pc(x.id)+'"></div>'
@@ -1583,19 +1587,24 @@ function renderMotores(){
     }).join('')+'</div>';
 }
 
-// ====== BOOT ======
-renderDashboard();
-renderPresidencial();
-renderSenadores();
-renderDiputados();
-renderExterior();
-renderHistorico();
-renderPotencial();
-renderMovilizacion();
-renderRiesgo();
-renderObjetivo();
-renderMotores();
-setTimeout(function(){drawParliament('parl-canvas',M.Curules.getTotalLegislativo(),M.Curules.getSumaCurules());},50);
+// ====== BOOT — cada render protegido con try/catch ======
+var _BOOT_ERRORS = [];
+function _safeRender(name, fn){
+  try { fn(); }
+  catch(e){ _BOOT_ERRORS.push(name+': '+e.message); console.error('SIE render error ['+name+']:', e.message, e.stack&&e.stack.split('\n')[1]); }
+}
+_safeRender('Dashboard',    renderDashboard);
+_safeRender('Presidencial', renderPresidencial);
+_safeRender('Senadores',    renderSenadores);
+_safeRender('Diputados',    renderDiputados);
+_safeRender('Exterior',     renderExterior);
+_safeRender('Historico',    renderHistorico);
+_safeRender('Potencial',    renderPotencial);
+_safeRender('Movilizacion', renderMovilizacion);
+_safeRender('Riesgo',       renderRiesgo);
+_safeRender('Objetivo',     renderObjetivo);
+_safeRender('Motores',      renderMotores);
+setTimeout(function(){ try{ drawParliament('parl-canvas',M.Curules.getTotalLegislativo(),M.Curules.getSumaCurules()); }catch(e){ console.warn('drawParliament:', e.message); } },80);
 
 // ── Listeners para selectores de nivel del HTML (level-btn) ──
 function bindLevelBtns(containerId, onChange) {
