@@ -91,7 +91,6 @@
 
   try {
     await loadScript('./core/engine.js');
-    await loadScript('./core/engine_v9_nuevos_motores.js');
     await loadScript('./core/ui.js');
   } catch (err) {
     setError('Error cargando motor: ' + err.message);
