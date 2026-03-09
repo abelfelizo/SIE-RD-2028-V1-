@@ -120,7 +120,15 @@ document.getElementById('main-nav').addEventListener('click', function(e){
     if(id==='objetivo') renderObjetivo();
     if(id==='motores')  renderMotores();
   } catch(navErr) {
-    console.error('SIE nav render error ['+id+']:', navErr.message);
+    console.error('SIE nav render error ['+id+']:', navErr.message, navErr.stack);
+    var errEl = document.getElementById('view-'+id);
+    if(errEl) errEl.insertAdjacentHTML('beforeend',
+      '<div style="background:#1F0D0D;border:1px solid #EF4444;border-radius:8px;padding:1rem;margin:1rem 0;font-family:monospace">'
+      +'<div style="color:#EF4444;font-weight:700;margin-bottom:.4rem">&#9888; Error en vista ['+id+']</div>'
+      +'<div style="color:#fca5a5;font-size:.8rem">'+navErr.message+'</div>'
+      +'<div style="color:#6b7280;font-size:.72rem;margin-top:.3rem">'
+      +(navErr.stack?navErr.stack.split('\n').slice(0,3).join('<br>'):'')
+      +'</div></div>');
   }
 });
 
