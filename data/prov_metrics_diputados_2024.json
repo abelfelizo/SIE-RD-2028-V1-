@@ -41,7 +41,11 @@
     "enpp": 2.908,
     "margen_pp": 34.9,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 17.99,
+    "pct_prm": 52.15,
+    "pct_pld": 13.06
   },
   {
     "id": "01-C2",
@@ -85,7 +89,11 @@
     "enpp": 2.422,
     "margen_pp": 37.87,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.63,
+    "pct_prm": 57.42,
+    "pct_pld": 12.77
   },
   {
     "id": "01-C3",
@@ -129,7 +137,11 @@
     "enpp": 2.459,
     "margen_pp": 38.04,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 19.34,
+    "pct_prm": 55.82,
+    "pct_pld": 15.65
   },
   {
     "id": "02-C1",
@@ -174,7 +186,11 @@
     "enpp": 2.173,
     "margen_pp": 47.24,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 16.55,
+    "pct_prm": 62.38,
+    "pct_pld": 12.72
   },
   {
     "id": "03-C1",
@@ -216,7 +232,11 @@
     "enpp": 2.241,
     "margen_pp": 43.86,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 17.83,
+    "pct_prm": 60.18,
+    "pct_pld": 14.65
   },
   {
     "id": "04-C1",
@@ -256,7 +276,11 @@
     "enpp": 2.182,
     "margen_pp": 47.07,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.56,
+    "pct_prm": 62.62,
+    "pct_pld": 16.74
   },
   {
     "id": "05-C1",
@@ -298,7 +322,11 @@
     "enpp": 2.252,
     "margen_pp": 41.42,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 19.39,
+    "pct_prm": 59.42,
+    "pct_pld": 15.42
   },
   {
     "id": "06-C1",
@@ -337,7 +365,11 @@
     "enpp": 1.901,
     "margen_pp": 41.39,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 5.05,
+    "pct_prm": 65.91,
+    "pct_pld": 25.48
   },
   {
     "id": "07-C1",
@@ -378,7 +410,11 @@
     "enpp": 1.838,
     "margen_pp": 56.86,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.73,
+    "pct_prm": 68.81,
+    "pct_pld": 13.51
   },
   {
     "id": "08-C1",
@@ -419,7 +455,11 @@
     "enpp": 2.008,
     "margen_pp": 51.61,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.76,
+    "pct_prm": 64.58,
+    "pct_pld": 15.03
   },
   {
     "id": "09-C1",
@@ -461,7 +501,11 @@
     "enpp": 2.297,
     "margen_pp": 35.52,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.83,
+    "pct_prm": 57.07,
+    "pct_pld": 22.89
   },
   {
     "id": "10-C1",
@@ -503,7 +547,11 @@
     "enpp": 1.855,
     "margen_pp": 56.45,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 11.52,
+    "pct_prm": 69.16,
+    "pct_pld": 14.15
   },
   {
     "id": "11-C1",
@@ -544,7 +592,11 @@
     "enpp": 1.699,
     "margen_pp": 65.71,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.34,
+    "pct_prm": 73.66,
+    "pct_pld": 9.43
   },
   {
     "id": "12-C1",
@@ -584,7 +636,11 @@
     "enpp": 2.481,
     "margen_pp": 35.95,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 5.84,
+    "pct_prm": 56.49,
+    "pct_pld": 21.22
   },
   {
     "id": "13-C1",
@@ -631,7 +687,11 @@
     "enpp": 3.351,
     "margen_pp": 23.29,
     "riesgo_score": 6.7,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 22.7,
+    "pct_prm": 45.32,
+    "pct_pld": 7.89
   },
   {
     "id": "14-C1",
@@ -674,7 +734,11 @@
     "enpp": 2.157,
     "margen_pp": 47.32,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 16.36,
+    "pct_prm": 62.3,
+    "pct_pld": 14.75
   },
   {
     "id": "14-C2",
@@ -714,7 +778,11 @@
     "enpp": 2.256,
     "margen_pp": 35.46,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 12.34,
+    "pct_prm": 58.7,
+    "pct_pld": 24.24
   },
   {
     "id": "15-C1",
@@ -754,7 +822,11 @@
     "enpp": 1.758,
     "margen_pp": 48.55,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 4.11,
+    "pct_prm": 69.88,
+    "pct_pld": 22.54
   },
   {
     "id": "16-C1",
@@ -795,7 +867,11 @@
     "enpp": 2.16,
     "margen_pp": 37.0,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 24.41,
+    "pct_prm": 60.11,
+    "pct_pld": 9.86
   },
   {
     "id": "17-C1",
@@ -835,7 +911,11 @@
     "enpp": 1.891,
     "margen_pp": 51.76,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 11.02,
+    "pct_prm": 67.89,
+    "pct_pld": 17.39
   },
   {
     "id": "18-C1",
@@ -877,7 +957,11 @@
     "enpp": 2.601,
     "margen_pp": 27.41,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 21.02,
+    "pct_prm": 50.73,
+    "pct_pld": 24.2
   },
   {
     "id": "19-C1",
@@ -916,7 +1000,11 @@
     "enpp": 2.632,
     "margen_pp": 24.73,
     "riesgo_score": 5.3,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 25.56,
+    "pct_prm": 49.61,
+    "pct_pld": 21.89
   },
   {
     "id": "20-C1",
@@ -958,7 +1046,11 @@
     "enpp": 1.523,
     "margen_pp": 70.04,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.69,
+    "pct_prm": 78.29,
+    "pct_pld": 8.69
   },
   {
     "id": "21-C1",
@@ -1002,7 +1094,11 @@
     "enpp": 2.212,
     "margen_pp": 45.67,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.92,
+    "pct_prm": 61.2,
+    "pct_pld": 16.75
   },
   {
     "id": "21-C2",
@@ -1043,7 +1139,11 @@
     "enpp": 1.973,
     "margen_pp": 39.3,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 6.49,
+    "pct_prm": 64.07,
+    "pct_pld": 25.78
   },
   {
     "id": "22-C1",
@@ -1083,7 +1183,11 @@
     "enpp": 2.116,
     "margen_pp": 43.85,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 19.44,
+    "pct_prm": 62.06,
+    "pct_pld": 15.27
   },
   {
     "id": "23-C1",
@@ -1126,7 +1230,11 @@
     "enpp": 2.771,
     "margen_pp": 35.83,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 18.28,
+    "pct_prm": 53.0,
+    "pct_pld": 14.1
   },
   {
     "id": "24-C1",
@@ -1166,7 +1274,11 @@
     "enpp": 2.452,
     "margen_pp": 32.28,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 18.82,
+    "pct_prm": 54.41,
+    "pct_pld": 23.06
   },
   {
     "id": "24-C2",
@@ -1205,7 +1317,11 @@
     "enpp": 2.32,
     "margen_pp": 27.68,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 11.03,
+    "pct_prm": 55.44,
+    "pct_pld": 28.71
   },
   {
     "id": "24-C3",
@@ -1245,7 +1361,11 @@
     "enpp": 2.562,
     "margen_pp": 17.58,
     "riesgo_score": 12.4,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 32.25,
+    "pct_prm": 49.31,
+    "pct_pld": 14.32
   },
   {
     "id": "25-C1",
@@ -1288,7 +1408,11 @@
     "enpp": 2.397,
     "margen_pp": 33.06,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 23.54,
+    "pct_prm": 55.31,
+    "pct_pld": 15.33
   },
   {
     "id": "26-C1",
@@ -1332,7 +1456,11 @@
     "enpp": 2.267,
     "margen_pp": 46.79,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.38,
+    "pct_prm": 60.68,
+    "pct_pld": 14.05
   },
   {
     "id": "27-C1",
@@ -1372,7 +1500,11 @@
     "enpp": 1.762,
     "margen_pp": 38.45,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 0.0,
+    "pct_prm": 67.11,
+    "pct_pld": 0.0
   },
   {
     "id": "28-C1",
@@ -1435,7 +1567,11 @@
     "enpp": 3.403,
     "margen_pp": 33.11,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "FP-coalicion",
+    "pct_fp": 14.49,
+    "pct_prm": 47.5,
+    "pct_pld": 15.53
   },
   {
     "id": "28-C2",
@@ -1478,7 +1614,11 @@
     "enpp": 2.289,
     "margen_pp": 42.34,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 17.75,
+    "pct_prm": 58.36,
+    "pct_pld": 17.22
   },
   {
     "id": "28-C3",
@@ -1521,7 +1661,11 @@
     "enpp": 2.322,
     "margen_pp": 36.4,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.88,
+    "pct_prm": 57.84,
+    "pct_pld": 22.55
   },
   {
     "id": "29-C1",
@@ -1561,7 +1705,11 @@
     "enpp": 2.219,
     "margen_pp": 36.87,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 12.17,
+    "pct_prm": 59.81,
+    "pct_pld": 23.82
   },
   {
     "id": "30-C1",
@@ -1603,7 +1751,11 @@
     "enpp": 1.879,
     "margen_pp": 52.2,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.68,
+    "pct_prm": 68.28,
+    "pct_pld": 17.37
   },
   {
     "id": "31-C1",
@@ -1643,7 +1795,11 @@
     "enpp": 2.392,
     "margen_pp": 36.25,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.69,
+    "pct_prm": 55.64,
+    "pct_pld": 19.04
   },
   {
     "id": "32-C1",
@@ -1687,7 +1843,11 @@
     "enpp": 2.822,
     "margen_pp": 28.14,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 23.07,
+    "pct_prm": 50.32,
+    "pct_pld": 15.74
   },
   {
     "id": "32-C2",
@@ -1732,7 +1892,11 @@
     "enpp": 2.614,
     "margen_pp": 29.74,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 24.25,
+    "pct_prm": 52.84,
+    "pct_pld": 11.98
   },
   {
     "id": "32-C3",
@@ -1777,7 +1941,11 @@
     "enpp": 2.909,
     "margen_pp": 30.51,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.56,
+    "pct_prm": 49.84,
+    "pct_pld": 15.36
   },
   {
     "id": "32-C4",
@@ -1821,7 +1989,11 @@
     "enpp": 2.345,
     "margen_pp": 35.37,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 23.57,
+    "pct_prm": 57.83,
+    "pct_pld": 9.69
   },
   {
     "id": "32-C5",
@@ -1864,7 +2036,11 @@
     "enpp": 2.359,
     "margen_pp": 32.38,
     "riesgo_score": 5,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 25.49,
+    "pct_prm": 56.78,
+    "pct_pld": 8.72
   },
   {
     "id": "32-C6",
@@ -1909,6 +2085,10 @@
     "enpp": 2.867,
     "margen_pp": 18.76,
     "riesgo_score": 11.2,
-    "riesgo_nivel": "baja"
+    "riesgo_nivel": "baja",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 29.11,
+    "pct_prm": 47.16,
+    "pct_pld": 11.95
   }
 ]

@@ -25,7 +25,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "alta",
     "riesgo_score": 77,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 35.7,
+    "pct_prm": 40.9
   },
   {
     "id": "02",
@@ -52,7 +55,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 69,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 14.8,
+    "pct_prm": 49.8
   },
   {
     "id": "03",
@@ -79,7 +85,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 47,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 14.97,
+    "pct_prm": 66.25
   },
   {
     "id": "04",
@@ -104,7 +113,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 46,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.16,
+    "pct_prm": 67.57
   },
   {
     "id": "05",
@@ -130,7 +142,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 53,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 19.51,
+    "pct_prm": 60.57
   },
   {
     "id": "06",
@@ -156,7 +171,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 60,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 7.65,
+    "pct_prm": 56.33
   },
   {
     "id": "07",
@@ -182,7 +200,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 44,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.46,
+    "pct_prm": 72.68
   },
   {
     "id": "08",
@@ -207,7 +228,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 45,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 14.81,
+    "pct_prm": 68.89
   },
   {
     "id": "09",
@@ -234,7 +258,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 51,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.57,
+    "pct_prm": 62.74
   },
   {
     "id": "10",
@@ -261,7 +288,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 47,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.26,
+    "pct_prm": 68.4
   },
   {
     "id": "11",
@@ -286,7 +316,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 62,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 16.39,
+    "pct_prm": 51.1
   },
   {
     "id": "12",
@@ -311,7 +344,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 35,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 5.18,
+    "pct_prm": 78.86
   },
   {
     "id": "13",
@@ -337,7 +373,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 70,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "FP-coalicion",
+    "pct_fp": 51.64,
+    "pct_prm": 42.7
   },
   {
     "id": "14",
@@ -364,7 +403,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 56,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 15.85,
+    "pct_prm": 59.79
   },
   {
     "id": "15",
@@ -391,7 +433,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 40,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.78,
+    "pct_prm": 74.72
   },
   {
     "id": "16",
@@ -417,7 +462,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 61,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 25.12,
+    "pct_prm": 57.4
   },
   {
     "id": "17",
@@ -442,7 +490,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 44,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 10.96,
+    "pct_prm": 70.66
   },
   {
     "id": "18",
@@ -467,7 +518,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 69,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.7,
+    "pct_prm": 45.5
   },
   {
     "id": "19",
@@ -494,7 +548,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 53,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 25.58,
+    "pct_prm": 60.73
   },
   {
     "id": "20",
@@ -519,7 +576,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 65,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 26.47,
+    "pct_prm": 52.42
   },
   {
     "id": "21",
@@ -546,7 +606,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 64,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 13.58,
+    "pct_prm": 54.38
   },
   {
     "id": "22",
@@ -573,7 +636,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 47,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.55,
+    "pct_prm": 69.25
   },
   {
     "id": "23",
@@ -598,7 +664,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 70,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 5.46,
+    "pct_prm": 50.66
   },
   {
     "id": "24",
@@ -625,7 +694,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 57,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 17.28,
+    "pct_prm": 57.25
   },
   {
     "id": "25",
@@ -650,7 +722,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 69,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 27.52,
+    "pct_prm": 44.97
   },
   {
     "id": "26",
@@ -676,7 +751,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 54,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 20.46,
+    "pct_prm": 61.97
   },
   {
     "id": "27",
@@ -703,7 +781,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 42,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 16.24,
+    "pct_prm": 72.04
   },
   {
     "id": "28",
@@ -731,7 +812,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 56,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 19.28,
+    "pct_prm": 62.57
   },
   {
     "id": "29",
@@ -757,7 +841,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 60,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 11.3,
+    "pct_prm": 56.56
   },
   {
     "id": "30",
@@ -783,7 +870,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 54,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 11.28,
+    "pct_prm": 63.31
   },
   {
     "id": "31",
@@ -808,7 +898,10 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "baja",
     "riesgo_score": 45,
-    "riesgo_nivel": "medio"
+    "riesgo_nivel": "medio",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 9.14,
+    "pct_prm": 68.75
   },
   {
     "id": "32",
@@ -836,6 +929,9 @@
     "proxy": "senadores_con_bloque_presidencial",
     "competitividad": "media",
     "riesgo_score": 63,
-    "riesgo_nivel": "alto"
+    "riesgo_nivel": "alto",
+    "bloque_coalicion": "PRM-coalicion",
+    "pct_fp": 23.51,
+    "pct_prm": 53.55
   }
 ]

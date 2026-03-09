@@ -49,7 +49,8 @@
     "votos_necesarios_fp": 60726,
     "pct_abstencionistas_a_movilizar": 18.0,
     "score_ofensivo_fp": 14.2,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "02",
@@ -101,7 +102,8 @@
     "votos_necesarios_fp": 10850,
     "pct_abstencionistas_a_movilizar": 12.8,
     "score_ofensivo_fp": 26.2,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "03",
@@ -153,7 +155,8 @@
     "votos_necesarios_fp": 17690,
     "pct_abstencionistas_a_movilizar": 30.6,
     "score_ofensivo_fp": 4.5,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "04",
@@ -205,7 +208,8 @@
     "votos_necesarios_fp": 9825,
     "pct_abstencionistas_a_movilizar": 40.1,
     "score_ofensivo_fp": 4.0,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "05",
@@ -257,7 +261,8 @@
     "votos_necesarios_fp": 9865,
     "pct_abstencionistas_a_movilizar": 21.4,
     "score_ofensivo_fp": 18.6,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "06",
@@ -309,7 +314,8 @@
     "votos_necesarios_fp": 7592,
     "pct_abstencionistas_a_movilizar": 48.9,
     "score_ofensivo_fp": 3.2,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "07",
@@ -361,7 +367,8 @@
     "votos_necesarios_fp": 26111,
     "pct_abstencionistas_a_movilizar": 23.7,
     "score_ofensivo_fp": 7.5,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "08",
@@ -413,7 +420,8 @@
     "votos_necesarios_fp": 4868,
     "pct_abstencionistas_a_movilizar": 20.9,
     "score_ofensivo_fp": 15.8,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "09",
@@ -465,7 +473,8 @@
     "votos_necesarios_fp": 3772,
     "pct_abstencionistas_a_movilizar": 23.7,
     "score_ofensivo_fp": 13.0,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "10",
@@ -517,7 +526,8 @@
     "votos_necesarios_fp": 21878,
     "pct_abstencionistas_a_movilizar": 26.8,
     "score_ofensivo_fp": 7.1,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "11",
@@ -569,7 +579,8 @@
     "votos_necesarios_fp": 8265,
     "pct_abstencionistas_a_movilizar": 32.3,
     "score_ofensivo_fp": 4.4,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "12",
@@ -621,7 +632,8 @@
     "votos_necesarios_fp": 6334,
     "pct_abstencionistas_a_movilizar": 62.7,
     "score_ofensivo_fp": 0.8,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "13",
@@ -673,7 +685,8 @@
     "votos_necesarios_fp": 9597,
     "pct_abstencionistas_a_movilizar": 12.3,
     "score_ofensivo_fp": 30.8,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "14",
@@ -725,7 +738,8 @@
     "votos_necesarios_fp": 29860,
     "pct_abstencionistas_a_movilizar": 21.7,
     "score_ofensivo_fp": 9.2,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "15",
@@ -777,7 +791,8 @@
     "votos_necesarios_fp": 13879,
     "pct_abstencionistas_a_movilizar": 32.4,
     "score_ofensivo_fp": 5.5,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "16",
@@ -829,7 +844,8 @@
     "votos_necesarios_fp": 12108,
     "pct_abstencionistas_a_movilizar": 18.3,
     "score_ofensivo_fp": 9.1,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "17",
@@ -881,7 +897,8 @@
     "votos_necesarios_fp": 10459,
     "pct_abstencionistas_a_movilizar": 34.7,
     "score_ofensivo_fp": 4.8,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "18",
@@ -933,7 +950,8 @@
     "votos_necesarios_fp": 8854,
     "pct_abstencionistas_a_movilizar": 19.6,
     "score_ofensivo_fp": 25.6,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "19",
@@ -985,7 +1003,8 @@
     "votos_necesarios_fp": 2763,
     "pct_abstencionistas_a_movilizar": 51.9,
     "score_ofensivo_fp": 0,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "20",
@@ -1037,7 +1056,8 @@
     "votos_necesarios_fp": 10770,
     "pct_abstencionistas_a_movilizar": 17.6,
     "score_ofensivo_fp": 13.9,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "21",
@@ -1089,7 +1109,8 @@
     "votos_necesarios_fp": 27601,
     "pct_abstencionistas_a_movilizar": 25.3,
     "score_ofensivo_fp": 8.5,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "22",
@@ -1141,7 +1162,8 @@
     "votos_necesarios_fp": 8314,
     "pct_abstencionistas_a_movilizar": 24.9,
     "score_ofensivo_fp": 5.4,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "23",
@@ -1193,7 +1215,8 @@
     "votos_necesarios_fp": 8174,
     "pct_abstencionistas_a_movilizar": 26.5,
     "score_ofensivo_fp": 6.5,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "24",
@@ -1245,7 +1268,8 @@
     "votos_necesarios_fp": 26907,
     "pct_abstencionistas_a_movilizar": 16.5,
     "score_ofensivo_fp": 26.2,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "25",
@@ -1297,7 +1321,8 @@
     "votos_necesarios_fp": 10022,
     "pct_abstencionistas_a_movilizar": 15.2,
     "score_ofensivo_fp": 31.1,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "26",
@@ -1349,7 +1374,8 @@
     "votos_necesarios_fp": 19953,
     "pct_abstencionistas_a_movilizar": 20.8,
     "score_ofensivo_fp": 8.7,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "27",
@@ -1401,7 +1427,8 @@
     "votos_necesarios_fp": 15083,
     "pct_abstencionistas_a_movilizar": 34.1,
     "score_ofensivo_fp": 3.3,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "28",
@@ -1453,7 +1480,8 @@
     "votos_necesarios_fp": 88483,
     "pct_abstencionistas_a_movilizar": 21.3,
     "score_ofensivo_fp": 11.2,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "29",
@@ -1505,7 +1533,8 @@
     "votos_necesarios_fp": 5935,
     "pct_abstencionistas_a_movilizar": 34.1,
     "score_ofensivo_fp": 6.3,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "30",
@@ -1557,7 +1586,8 @@
     "votos_necesarios_fp": 14437,
     "pct_abstencionistas_a_movilizar": 29.0,
     "score_ofensivo_fp": 6.4,
-    "categoria_ofensiva_fp": "perdida"
+    "categoria_ofensiva_fp": "perdida",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "31",
@@ -1609,7 +1639,8 @@
     "votos_necesarios_fp": 3803,
     "pct_abstencionistas_a_movilizar": 20.5,
     "score_ofensivo_fp": 17.2,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   },
   {
     "id": "32",
@@ -1661,6 +1692,7 @@
     "votos_necesarios_fp": 70465,
     "pct_abstencionistas_a_movilizar": 9.5,
     "score_ofensivo_fp": 34.8,
-    "categoria_ofensiva_fp": "competitiva"
+    "categoria_ofensiva_fp": "competitiva",
+    "bloque_coalicion": "PRM-coalicion"
   }
 ]

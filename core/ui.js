@@ -724,16 +724,24 @@ var _RIE_PARTIDO = 'PRM';
 function renderRiesgo(){
   var ds = _getProvDS(_RIE_NIVEL);
   var clasificados = M.Riesgo.clasificar(ds, _RIE_PARTIDO);
-  var alertas = M.Riesgo.getAlertas(ds, _RIE_PARTIDO);
+  // Para partidos challenger (0 provincias ganadas), mostrar análisis de competitividad
+  var esChallenger = clasificados.length === 0;
+  if (esChallenger) {
+    clasificados = ds.slice().map(function(pm){
+      var score = M.Riesgo.calcScore(pm.margen_pp||0, pm.participacion||50, pm.enpp||2);
+      return Object.assign({}, pm, { riesgo_score: score, riesgo_nivel: M.Riesgo.nivelRiesgo(score) });
+    }).sort(function(a,b){ return b.riesgo_score - a.riesgo_score; });
+  }
+  var alertas = esChallenger ? [] : M.Riesgo.getAlertas(ds, _RIE_PARTIDO);
   var n_alto = clasificados.filter(function(p){return p.riesgo_nivel==='alto';}).length;
   var n_medio = clasificados.filter(function(p){return p.riesgo_nivel==='medio';}).length;
   var n_bajo = clasificados.filter(function(p){return p.riesgo_nivel==='bajo';}).length;
 
   document.getElementById('riesgo-kpis').innerHTML =
-    kpi('red','Riesgo Alto',n_alto,'provincias \u2014 monitoreo inmediato')
-    +kpi('gold','Riesgo Medio',n_medio,'provincias \u2014 seguimiento')
-    +kpi('green','Riesgo Bajo',n_bajo,'provincias \u2014 consolidadas')
-    +kpi('blue','Total '+_RIE_PARTIDO,clasificados.length,'provincias ganadas');
+    kpi('red', esChallenger?'Alta Competitividad':'Riesgo Alto', n_alto, esChallenger?'provincias disputables':'provincias \u2014 monitoreo inmediato')
+    +kpi('gold', esChallenger?'Media Competitividad':'Riesgo Medio', n_medio, esChallenger?'potencial con esfuerzo':'provincias \u2014 seguimiento')
+    +kpi('green', esChallenger?'Baja Competitividad':'Riesgo Bajo', n_bajo, esChallenger?'dif\u00edciles':'provincias \u2014 consolidadas')
+    +kpi('blue', esChallenger?_RIE_PARTIDO+' Challenger':'Total '+_RIE_PARTIDO, esChallenger?'0 ganadas':clasificados.length, esChallenger?'an\u00e1lisis de potencial':'provincias ganadas');
 
   document.getElementById('riesgo-list').innerHTML = clasificados.map(function(pm){
     var col = pm.riesgo_nivel==='alto'?'var(--red)':pm.riesgo_nivel==='medio'?'var(--gold)':'var(--green)';

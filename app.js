@@ -48,6 +48,9 @@
     { key: '_PROV_METRICS_SEN',      file: 'prov_metrics_senadores_2024.json'     },
     { key: '_PROV_METRICS_DIP',      file: 'prov_metrics_diputados_2024.json'     },
     { key: '_PROV_METRICS',          file: 'prov_metrics_presidencial_2024.json'  },
+    { key: '_PROV_PRES_32',          file: 'prov_pres_2024.json'                  },
+    { key: '_PROV_SEN_32',           file: 'prov_sen_2024.json'                   },
+    { key: '_PROV_DIP_32',           file: 'prov_dip_2024.json'                   },
   ];
 
   // ── Datasets 2020 ────────────────────────────────────────────
@@ -82,10 +85,12 @@
     }
   }
 
-  // ── Aliases 2024 (ui.js los necesita sin sufijo de año para el año activo) ──
-  window._PROV_PRES = window._PROV_METRICS_PRES;
-  window._PROV_SEN  = window._PROV_METRICS_SEN;
-  window._PROV_DIP  = window._PROV_METRICS_DIP;
+  // ── Aliases 2024 — usar datasets de 32 provincias para motores estratégicos ──
+  // _PROV_METRICS_* son los archivos detallados (45 circs para dip, con blocs)
+  // _PROV_*_32 son los archivos por provincia (32 provincias, para riesgo/objetivo/movilizacion)
+  window._PROV_PRES = window._PROV_METRICS_PRES;  // 32 prov, tiene pct_fp/pct_prm/bloque_coalicion
+  window._PROV_SEN  = window._PROV_METRICS_SEN;   // 32 prov, tiene bloque_coalicion
+  window._PROV_DIP  = window._PROV_METRICS_DIP;   // 45 circs, tiene pct_fp/pct_prm (fixed)
 
   setMsg('Inicializando motores…', TOTAL_DS + '/' + TOTAL_DS + ' datasets listos');
 
