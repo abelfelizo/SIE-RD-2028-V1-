@@ -12,7 +12,7 @@
   <div class="brand">
     <span style="font-size:1.3rem">⚡</span>
     <span class="brand-name">SIE 2028</span>
-    <span class="badge">v9.1</span>
+    <span class="badge">v9.2</span>
     <span class="badge-ds">DATASET 2024</span>
   </div>
   <div style="display:flex;gap:.75rem;align-items:center">
@@ -305,42 +305,78 @@
   <!-- NIVEL 4: PROSPECTIVA 2028 -->
   <div id="view-simulador" class="view">
     <div class="section-title">🔬 Simulador Electoral 2028</div>
+
+    <!-- Selector de nivel -->
+    <div class="level-selector" id="sim-nivel-bar">
+      <span class="level-label">Nivel:</span>
+      <button class="level-btn active" data-level="presidencial">Presidencial</button>
+      <button class="level-btn" data-level="senadores">Senadores</button>
+      <button class="level-btn" data-level="diputados">Diputados</button>
+    </div>
+
     <div class="kpi-grid" id="sim-kpis" style="margin-bottom:.75rem"></div>
+
     <div class="sim-grid">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Intención de voto presidencial</span><span class="card-badge">D'Hondt + umbral 2%</span></div>
+        <div class="card-hdr">
+          <span class="card-title">Intención de voto</span>
+          <span class="card-badge">Arrastra · Cambia en tiempo real</span>
+        </div>
         <div id="sim-sliders" class="slider-group"></div>
+
+        <!-- Variables adicionales -->
+        <div style="margin-top:1rem;border-top:1px solid var(--border);padding-top:.75rem">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">Variables del escenario</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+            <div>
+              <div style="font-size:.67rem;color:var(--muted);margin-bottom:.2rem">Participación 2028 (%)</div>
+              <input type="number" id="sim-participacion" min="35" max="80" value="54" style="text-align:center;font-weight:700" onchange="runSimulation()">
+            </div>
+            <div>
+              <div style="font-size:.67rem;color:var(--muted);margin-bottom:.2rem">Alianza FP+PLD</div>
+              <select id="sim-alianza" onchange="runSimulation()">
+                <option value="no">Sin alianza</option>
+                <option value="si">Con alianza FP+PLD</option>
+              </select>
+            </div>
+            <div>
+              <div style="font-size:.67rem;color:var(--muted);margin-bottom:.2rem">Encuesta PRM (%)</div>
+              <input type="number" id="sim-enc-prm" min="0" max="80" placeholder="—" style="text-align:center" onchange="runSimulation()">
+            </div>
+            <div>
+              <div style="font-size:.67rem;color:var(--muted);margin-bottom:.2rem">Encuesta FP (%)</div>
+              <input type="number" id="sim-enc-fp" min="0" max="80" placeholder="—" style="text-align:center" onchange="runSimulation()">
+            </div>
+          </div>
+          <p class="note">Encuesta: promedia 50/50 con el modelo · Participación ajusta votos absolutos</p>
+        </div>
+
         <div style="margin-top:.75rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-          <div>
-            <div style="font-size:.68rem;color:var(--muted);margin-bottom:.2rem">Participación %</div>
-            <input type="number" id="sim-participacion" min="40" max="80" value="54" style="text-align:center;font-weight:700">
-          </div>
-          <div>
-            <div style="font-size:.68rem;color:var(--muted);margin-bottom:.2rem">Alianza FP+PLD</div>
-            <select id="sim-alianza">
-              <option value="no">Sin alianza</option>
-              <option value="si">Con alianza</option>
-            </select>
-          </div>
+          <button id="btn-simular" style="background:var(--accent);color:#fff;border:none;padding:.55rem .9rem;border-radius:var(--r);font-weight:700;cursor:pointer">▶ Simular</button>
+          <button id="btn-sim-reset" style="background:var(--bg3);color:var(--muted);border:1px solid var(--border);padding:.55rem .9rem;border-radius:var(--r);font-weight:700;cursor:pointer">↺ Valores 2024</button>
         </div>
-        <div style="margin-top:.75rem">
-          <button id="btn-simular" style="background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:var(--r);font-weight:700;cursor:pointer;width:100%">▶ Simular</button>
-        </div>
-        <p class="note">D'Hondt con umbral 2% — Ley Electoral RD 275-97, Art. 68</p>
       </div>
+
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Proyección legislativa</span><span class="card-badge" id="sim-escenario-badge">Escenario base</span></div>
-        <div id="sim-results"><p class="text-muted text-sm">Ajusta los sliders y presiona Simular.</p></div>
+        <div class="card-hdr">
+          <span class="card-title">Resultado proyectado</span>
+          <span class="card-badge" id="sim-escenario-badge">Presidencial</span>
+        </div>
+        <div id="sim-results"><p class="text-muted text-sm">Ajusta los sliders — actualiza en tiempo real.</p></div>
       </div>
     </div>
+
     <div class="card" style="margin-top:1rem">
-      <div class="card-hdr"><span class="card-title">Análisis presidencial del escenario</span><span class="card-badge">Ballotage · Mayoría</span></div>
+      <div class="card-hdr">
+        <span class="card-title">Análisis del escenario</span>
+        <span class="card-badge">Ballotage · Mayorías · Variables</span>
+      </div>
       <div id="sim-pres-analysis"><p class="text-muted text-sm" style="padding:.5rem 0">Ejecuta la simulación para ver el análisis.</p></div>
     </div>
   </div>
 
   <div id="view-proyeccion" class="view">
-    <div class="section-title">📈 Proyección Electoral 2028 — v9.1</div>
+    <div class="section-title">📈 Proyección Electoral 2028 — v9.2</div>
 
     <!-- Escenarios automáticos -->
     <div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">
@@ -363,7 +399,7 @@
 
     <div class="grid g2">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Proyección nacional</span><span class="card-badge">Fundamentals + Swing v9.1</span></div>
+        <div class="card-hdr"><span class="card-title">Proyección nacional</span><span class="card-badge">Fundamentals + Swing v9.2</span></div>
         <div id="proy-fundamentals"></div>
         <p class="note">Swing histórico 35% · Incumbencia ×1.02 · Fatiga -2pp · Normalización Panebianco 1988</p>
       </div>
@@ -393,27 +429,48 @@
 
   <!-- OBJETIVO 2028 -->
   <div id="view-objetivo" class="view">
-    <div class="section-title">🎯 Objetivo Electoral 2028 — Meta FP</div>
+    <div class="section-title">🎯 Objetivo Electoral 2028</div>
+
+    <!-- Selector de nivel -->
+    <div class="level-selector" id="obj-nivel-bar">
+      <span class="level-label">Nivel:</span>
+      <button class="level-btn active" data-level="presidencial">Presidencial</button>
+      <button class="level-btn" data-level="senadores">Senadores</button>
+      <button class="level-btn" data-level="diputados">Diputados</button>
+    </div>
+
     <div class="kpi-grid" id="obj-kpis"></div>
 
     <div class="grid g2" style="margin-bottom:1rem">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Meta de votos 2028</span><span class="card-badge">Motor Meta Electoral M21</span></div>
+        <div class="card-hdr">
+          <span class="card-title">Meta y escenarios</span>
+          <span class="card-badge">Motores M20 · M21</span>
+        </div>
         <div id="obj-meta-detalle"></div>
       </div>
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Ruta de victoria mínima</span><span class="card-badge">Motor Ruta M20</span></div>
+        <div class="card-hdr">
+          <span class="card-title">Ruta de victoria</span>
+          <span class="card-badge">Provincias clave · M20</span>
+        </div>
         <div id="obj-ruta"></div>
       </div>
     </div>
 
     <div class="grid g2">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Provincias pivot</span><span class="card-badge">Motor Pivot M19</span></div>
+        <div class="card-hdr">
+          <span class="card-title">Provincias pivot</span>
+          <span class="card-badge">Motor Pivot M19</span>
+        </div>
         <div id="obj-pivot"></div>
       </div>
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Ranking de prioridad de inversión</span><span class="card-badge">Motor Prioridad M22</span></div>
+        <div class="card-hdr">
+          <span class="card-title">Prioridad de inversión</span>
+          <span class="card-badge">Motor Prioridad M22</span>
+        </div>
         <div id="obj-prioridad"></div>
       </div>
     </div>
@@ -429,7 +486,7 @@
   </div>
 
   <div id="view-motores" class="view">
-    <div class="section-title">⚙ Estado de Motores — SIE 2028 v9.1</div>
+    <div class="section-title">⚙ Estado de Motores — SIE 2028 v9.2</div>
     <div class="grid g2">
       <div class="card"><div class="card-hdr"><span class="card-title">Activos</span></div><div id="motores-on"></div></div>
       <div class="card"><div class="card-hdr"><span class="card-title">Desactivados</span></div><div id="motores-off"></div></div>

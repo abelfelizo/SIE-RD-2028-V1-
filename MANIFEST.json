@@ -1,6 +1,6 @@
 {
   "nombre": "SIE 2028 v9.0",
-  "version": "9.1",
+  "version": "9.2",
   "fecha": "2026-03-09",
   "estado": "PRODUCCIÓN",
   "cambios_v9_0": {
@@ -55,5 +55,5 @@
   },
   "motores_activos": 22,
   "motores_inactivos": 1,
-  "nota": "v9.1: Motor Proyeccion v9.1 (swing+territorial+escenarios), Motor Objetivo 2028, fix participacion, fix tabs senadores, municipios en potencial/movilizacion/riesgo, simulador mejorado, palette neutra, dark/light mode"
+  "nota": "v9.2: Fix participación/emitidos (normalización totales), Simulador tri-nivel (presidencial/senadores/diputados) con encuestas+participación+alianza, Motor Objetivo tri-nivel con metas configurables, bindLevelBtns sim+obj"
 }
