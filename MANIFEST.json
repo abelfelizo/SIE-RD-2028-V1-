@@ -1,0 +1,75 @@
+{
+  "nombre": "SIE 2028 v9.1",
+  "version": "9.1.0",
+  "fecha": "2026-03-09",
+  "estado": "PRODUCCIÓN",
+  
+  "cambios_v9_1": {
+    "motor_proyeccion": "REESCRITO (v8.9 → v9.1)",
+    "correcciones_criticas": 1,
+    "mejoras": 7,
+    "breaking_changes": 0,
+    "compatibilidad": "100% con v9.0"
+  },
+  
+  "cambios_detallados": [
+    {
+      "tipo": "CORRECCIÓN CRÍTICA",
+      "motor": "MotorProyección",
+      "cambio": "ciclos_en_poder PRM: 1 → 2",
+      "razon": "PRM tuvo 2 victorias (2020 Medina + 2024 Abinader)",
+      "impacto": "Proyección PRM baja de 59% a 55-56% (más realista)"
+    },
+    {
+      "tipo": "REESCRITURA",
+      "motor": "MotorProyección",
+      "cambio": "Implementar diseño v9.1",
+      "mejoras": [
+        "Swing histórico moderado (35% aplicado)",
+        "Incumbencia como factor multiplicador, no suma",
+        "Desgaste por ciclo aplicado correctamente",
+        "Proyección territorial por provincia/municipio",
+        "Escenarios automáticos (base/optimista/pesimista)",
+        "Encuestas con ponderación de recencia/calidad",
+        "Normalización de madurez partidaria"
+      ]
+    }
+  ],
+  
+  "motor_proyeccion_v91": {
+    "nombre": "MotorProyeccionv91",
+    "ubicacion": "core/engine.js",
+    "lineas": 303,
+    "metodos": [
+      "baseline()",
+      "swingHistorico()",
+      "fundamentals()",
+      "encuestas()",
+      "normalizacionPartidos()",
+      "proyeccionTerritorial()",
+      "proyectar()",
+      "escenarios()"
+    ],
+    "inputs": {
+      "encuestas": "array de objetos con fecha/muestra/resultado",
+      "participacion": "0.50 a 0.60 (defecto 0.54)",
+      "territorios": "datos provinciales para ajuste territorial"
+    },
+    "outputs": {
+      "nacional": "% proyectado por partido",
+      "territorio": "proyecciones por provincia/municipio",
+      "metadata": "método, participación, timestamp"
+    }
+  },
+
+  "acceso_motores": {
+    "javascript": "window.SIE_MOTORES.Proyeccionv91.proyectar(encuestas, participacion)",
+    "metodos_disponibles": [
+      "window.SIE_MOTORES.Proyeccionv91.baseline()",
+      "window.SIE_MOTORES.Proyeccionv91.swingHistorico()",
+      "window.SIE_MOTORES.Proyeccionv91.fundamentals()",
+      "window.SIE_MOTORES.Proyeccionv91.proyectar()",
+      "window.SIE_MOTORES.Proyeccionv91.escenarios()"
+    ]
+  }
+}

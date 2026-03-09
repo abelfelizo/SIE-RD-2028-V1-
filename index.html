@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIE 2028 v9.1 - Sistema de Inteligencia Electoral</title>
+    <link rel="stylesheet" href="assets/css/theme-v91.css">
+    <script src="core/engine.js"></script>
+    <script src="core/ui.js"></script>
+    <script src="core/engine.js"></script>
+    <script src="core/ui.js"></script>
+    <script src="assets/js/app-v91-completo.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo">SIE 2028</div>
+            </div>
+
+            <div class="header-center">
+                <button class="nav-button active" data-vista="comando">📊 Comando</button>
+                <button class="nav-button" data-vista="resultados">📈 Resultados</button>
+                <button class="nav-button" data-vista="inteligencia">🧠 Inteligencia</button>
+                <button class="nav-button" data-vista="proyeccion">🔮 Proyección 2028</button>
+                <button class="nav-button" data-vista="simulacion">⚡ Simulación</button>
+                <button class="nav-button" data-vista="historico">📜 Histórico</button>
+                <button class="nav-button" data-vista="sistema">⚙️ Sistema</button>
+            </div>
+
+            <div class="header-right">
+                <div class="theme-toggle" id="themeToggle">
+                    <span class="theme-toggle-icon active">🌙</span>
+                    <div class="theme-toggle-circle"></div>
+                    <span class="theme-toggle-icon">☀️</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main-container">
+            <!-- SIDEBAR -->
+            <div class="nav-sidebar">
+                <!-- COMANDO -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Comando Ejecutivo</div>
+                    <div class="nav-item active" data-vista="comando" data-seccion="dashboard">Dashboard</div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Resultados Electorales</div>
+                    <div class="nav-item" data-vista="resultados" data-seccion="presidencial">Presidencial</div>
+                    <div class="nav-item" data-vista="resultados" data-seccion="senadores">Senadores</div>
+                    <div class="nav-item" data-vista="resultados" data-seccion="diputados">Diputados</div>
+                </div>
+
+                <!-- INTELIGENCIA -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Análisis de Inteligencia</div>
+                    <div class="nav-item" data-vista="inteligencia" data-seccion="potencial">Potencial Electoral</div>
+                    <div class="nav-item" data-vista="inteligencia" data-seccion="movilizacion">Movilización</div>
+                    <div class="nav-item" data-vista="inteligencia" data-seccion="riesgo">Análisis de Riesgo</div>
+                </div>
+
+                <!-- PROYECCIÓN -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Proyección Electoral</div>
+                    <div class="nav-item" data-vista="proyeccion" data-seccion="proyeccion">Proyección 2028</div>
+                    <div class="nav-item" data-vista="proyeccion" data-seccion="ruta">Ruta de Victoria</div>
+                    <div class="nav-item" data-vista="proyeccion" data-seccion="prioridad">Prioridad Estratégica</div>
+                </div>
+
+                <!-- SIMULACIÓN -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Herramientas</div>
+                    <div class="nav-item" data-vista="simulacion" data-seccion="simulador">Simulador Electoral</div>
+                    <div class="nav-item" data-vista="historico" data-seccion="replay">Replay 2020-2024</div>
+                </div>
+
+                <!-- SISTEMA -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Configuración</div>
+                    <div class="nav-item" data-vista="sistema" data-seccion="motores">Motores Analíticos</div>
+                    <div class="nav-item" data-vista="sistema" data-seccion="datos">Gestión de Datos</div>
+                </div>
+            </div>
+
+            <!-- CONTENT AREA -->
+            <div class="content-area">
+
+                <!-- VISTA 1: COMANDO EJECUTIVO -->
+                <div class="vista active" id="vista-comando">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">Dashboard Ejecutivo 2028</div>
+                        </div>
+                        
+                        <div class="grid grid-4">
+                            <div class="stat-card">
+                                <div class="stat-value" id="meta-votos">2.35M</div>
+                                <div class="stat-label">Meta de Votos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="gap-votos">254K</div>
+                                <div class="stat-label">Gap Electoral</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="proyeccion-fp">30.8%</div>
+                                <div class="stat-label">Proyección FP</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" id="provincias-pivote">5</div>
+                                <div class="stat-label">Provincias Pivote</div>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 24px; margin-bottom: 12px; color: var(--green-light);">Semáforo Territorial (32 Provincias)</h3>
+                        <div class="semaforo" id="semaforo-provincias">
+                            <!-- Generado dinámicamente -->
+                        </div>
+
+                        <div class="grid grid-2" style="margin-top: 24px;">
+                            <div class="panel">
+                                <div class="panel-title">Top 5 Provincias Pivote</div>
+                                <div id="top5-pivote" style="font-size: 13px;">
+                                    <!-- Generado dinámicamente -->
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-title">Top 5 Provincias Ofensivas</div>
+                                <div id="top5-ofensivas" style="font-size: 13px;">
+                                    <!-- Generado dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel" style="margin-top: 16px;">
+                            <div class="panel-title">3 Acciones Recomendadas</div>
+                            <ol style="margin-left: 20px; line-height: 2;">
+                                <li>Reforzar movilización en provincias pivote (Santo Domingo, Espaillat, La Vega)</li>
+                                <li>Negociar alianzas con PLD y PQDC para absorber votos de coalición</li>
+                                <li>Ejecutar encuestas en tiempo real para calibrar proyecciones cada 2 semanas</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISTA 2: RESULTADOS -->
+                <div class="vista" id="vista-resultados">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="panel-title">Resultados Electorales</div>
+                            <div>
+                                <button class="btn btn-secondary" onclick="cargarSeccion('presidencial')">Presidencial</button>
+                                <button class="btn btn-secondary" onclick="cargarSeccion('senadores')">Senadores</button>
+                                <button class="btn btn-secondary" onclick="cargarSeccion('diputados')">Diputados</button>
+                            </div>
+                        </div>
+                        <div id="resultados-contenido">
+                            <!-- Generado dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISTA 3: INTELIGENCIA -->
+                <div class="vista" id="vista-inteligencia">
+                    <div class="panel">
+                        <div class="panel-title">Análisis de Inteligencia Electoral</div>
+                        <div class="grid grid-2" id="inteligencia-contenido">
+                            <!-- Generado dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISTA 4: PROYECCIÓN 2028 -->
+                <div class="vista" id="vista-proyeccion">
+                    <div class="panel">
+                        <div class="panel-title">Proyección Electoral 2028</div>
+                        <div class="grid grid-2" id="proyeccion-contenido">
+                            <!-- Generado dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISTA 5: SIMULACIÓN -->
+                <div class="vista" id="vista-simulacion">
+                    <div class="panel">
+                        <div class="panel-title">Simulador Electoral</div>
+                        <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
+                            Simulador electoral - Ajusta parámetros y genera escenarios
+                        </p>
+                    </div>
+                </div>
+
+                <!-- VISTA 6: HISTÓRICO -->
+                <div class="vista" id="vista-historico">
+                    <div class="panel">
+                        <div class="panel-title">Replay Electoral 2020-2024</div>
+                        <p style="color: var(--text-muted); text-align: center; padding: 40px 0;">
+                            Análisis histórico de ciclos electorales anteriores
+                        </p>
+                    </div>
+                </div>
+
+                <!-- VISTA 7: SISTEMA -->
+                <div class="vista" id="vista-sistema">
+                    <div class="panel">
+                        <div class="panel-title">Motores Analíticos (24 Motores Activos)</div>
+                        <div class="grid grid-3" id="sistema-contenido">
+                            <!-- Generado dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // THEME TOGGLE
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme-mode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // CARGAR TEMA AL INICIAR
+        if (localStorage.getItem('theme-mode') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+
+        // NAV BUTTONS
+        document.querySelectorAll('.header-center .nav-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const vista = this.dataset.vista;
+                document.querySelectorAll('.vista').forEach(v => v.classList.remove('active'));
+                document.getElementById('vista-' + vista).classList.add('active');
+            });
+        });
+
+        // SIDEBAR NAV
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const vista = this.dataset.vista;
+                document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-vista="${vista}"]`).classList.add('active');
+                document.querySelectorAll('.vista').forEach(v => v.classList.remove('active'));
+                document.getElementById('vista-' + vista).classList.add('active');
+            });
+        });
+
+        // INICIALIZAR DATOS
+        function inicializarDashboard() {
+            // Cargar Motor Proyección v9.1
+            const proyeccion = window.SIE_MOTORES.Proyeccionv91.proyectar();
+            console.log('Proyección v9.1:', proyeccion);
+
+            // Cargar Motor Meta Electoral
+            const meta = window.SIE_MOTORES.MetaElectoral.calculate();
+            document.getElementById('meta-votos').textContent = (meta.meta.metaVotos / 1000000).toFixed(2) + 'M';
+            document.getElementById('gap-votos').textContent = (meta.meta.gap / 1000).toFixed(0) + 'K';
+
+            // Cargar datos ficticios para provincias
+            generarSemaforoProvincias();
+        }
+
+        function generarSemaforoProvincias() {
+            const provincias = [
+                { nombre: 'Santo Domingo', estado: 'amarillo' },
+                { nombre: 'Espaillat', estado: 'amarillo' },
+                { nombre: 'La Vega', estado: 'amarillo' },
+                { nombre: 'Santiago', estado: 'rojo' },
+                { nombre: 'Duarte', estado: 'verde' },
+                { nombre: 'Camagüey', estado: 'verde' }
+            ];
+
+            const semaforo = document.getElementById('semaforo-provincias');
+            provincias.slice(0, 12).forEach(prov => {
+                const div = document.createElement('div');
+                div.className = `provincia-item ${prov.estado}`;
+                div.innerHTML = `<div class="provincia-name">${prov.nombre}</div><div class="provincia-score">Score: ${Math.random().toFixed(2)}</div>`;
+                semaforo.appendChild(div);
+            });
+        }
+
+        // AL CARGAR
+        window.addEventListener('load', inicializarDashboard);
+    </script>
+</body>
+</html>

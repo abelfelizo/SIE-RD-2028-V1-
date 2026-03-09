@@ -1,0 +1,4372 @@
+{
+  "eleccion": 2024,
+  "fuente": "JCE RTF oficial 2024 — bloques electorales reales por nivel y territorio",
+  "nota": "Votos individuales en resultados_2024.json. Estas alianzas son aplicadas por engine.js para calcular resultados por bloque. candidato_base = partido que presentó la candidatura según encabezado RTF JCE.",
+  "niveles": {
+    "presidencial": [
+      {
+        "territorio": "nacional",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "votos": 2507297,
+            "porcentaje": 57.44
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "votos": 1259427,
+            "porcentaje": 28.85
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD"
+            ],
+            "votos": 453468,
+            "porcentaje": 10.39
+          },
+          {
+            "candidato_base": "PED",
+            "partidos": [
+              "PED"
+            ],
+            "votos": 59396,
+            "porcentaje": 1.36
+          },
+          {
+            "candidato_base": "GENS",
+            "partidos": [
+              "GENS"
+            ],
+            "votos": 31566,
+            "porcentaje": 0.72
+          },
+          {
+            "candidato_base": "OD",
+            "partidos": [
+              "OD"
+            ],
+            "votos": 25204,
+            "porcentaje": 0.58
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "PRD"
+            ],
+            "votos": 19790,
+            "porcentaje": 0.45
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "FAMP"
+            ],
+            "votos": 6255,
+            "porcentaje": 0.14
+          },
+          {
+            "candidato_base": "PPT",
+            "partidos": [
+              "PPT"
+            ],
+            "votos": 2744,
+            "porcentaje": 0.06
+          }
+        ]
+      }
+    ],
+    "senadores": [
+      {
+        "provincia_id": "01",
+        "provincia": "Distrito Nacional",
+        "ganador": "FP",
+        "bloques": [
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PLD",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 256054
+          },
+          {
+            "candidato_base": "ALPAIS",
+            "partidos": [
+              "PRM",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 181204
+          },
+          {
+            "candidato_base": "FNP",
+            "partidos": [
+              "PRSC",
+              "FNP"
+            ],
+            "total_votos": 7746
+          }
+        ]
+      },
+      {
+        "provincia_id": "02",
+        "provincia": "La Altagracia",
+        "ganador": "PLR",
+        "bloques": [
+          {
+            "candidato_base": "PLR",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "BIS",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PSC",
+              "PDI",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 51634
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "PQDC",
+              "GENS",
+              "OD"
+            ],
+            "total_votos": 46828
+          }
+        ]
+      },
+      {
+        "provincia_id": "03",
+        "provincia": "Azua",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 74732
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "GENS",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 36950
+          }
+        ]
+      },
+      {
+        "provincia_id": "04",
+        "provincia": "Bahoruco",
+        "ganador": "APD",
+        "bloques": [
+          {
+            "candidato_base": "APD",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 34497
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 16249
+          }
+        ]
+      },
+      {
+        "provincia_id": "05",
+        "provincia": "Barahona",
+        "ganador": "PRI",
+        "bloques": [
+          {
+            "candidato_base": "PRI",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 53226
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 33759
+          }
+        ]
+      },
+      {
+        "provincia_id": "06",
+        "provincia": "Dajabon",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 20728
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "PSC"
+            ],
+            "total_votos": 13231
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 2661
+          }
+        ]
+      },
+      {
+        "provincia_id": "07",
+        "provincia": "Duarte",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 87987
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 31924
+          }
+        ]
+      },
+      {
+        "provincia_id": "08",
+        "provincia": "El Seibo",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 27061
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 11888
+          }
+        ]
+      },
+      {
+        "provincia_id": "09",
+        "provincia": "Elias Piña",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 18345
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 10588
+          }
+        ]
+      },
+      {
+        "provincia_id": "10",
+        "provincia": "Espaillat",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 74036
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 32733
+          }
+        ]
+      },
+      {
+        "provincia_id": "11",
+        "provincia": "Hato Mayor",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 24447
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 23028
+          }
+        ]
+      },
+      {
+        "provincia_id": "12",
+        "provincia": "Independencia",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 15726
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 5803
+          }
+        ]
+      },
+      {
+        "provincia_id": "13",
+        "provincia": "La Romana",
+        "ganador": "FP",
+        "bloques": [
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 57657
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 46550
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "PSC"
+            ],
+            "total_votos": 4823
+          }
+        ]
+      },
+      {
+        "provincia_id": "14",
+        "provincia": "La Vega",
+        "ganador": "PRSC",
+        "bloques": [
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 106471
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 68460
+          }
+        ]
+      },
+      {
+        "provincia_id": "15",
+        "provincia": "Maria Trinidad Sanchez",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 51320
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 16165
+          }
+        ]
+      },
+      {
+        "provincia_id": "16",
+        "provincia": "Monseñor Nouel",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 44455
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 21406
+          },
+          {
+            "candidato_base": "GENS",
+            "partidos": [
+              "PLD",
+              "GENS",
+              "OD"
+            ],
+            "total_votos": 10897
+          }
+        ]
+      },
+      {
+        "provincia_id": "17",
+        "provincia": "Monte Cristi",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 36542
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 15015
+          }
+        ]
+      },
+      {
+        "provincia_id": "18",
+        "provincia": "Monte Plata",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 41093
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD"
+            ],
+            "total_votos": 31937
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 19817
+          }
+        ]
+      },
+      {
+        "provincia_id": "19",
+        "provincia": "Pedernales",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 8709
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 5510
+          }
+        ]
+      },
+      {
+        "provincia_id": "20",
+        "provincia": "Peravia",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 41551
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 30291
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 6685
+          }
+        ]
+      },
+      {
+        "provincia_id": "21",
+        "provincia": "Puerto Plata",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 80509
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 65637
+          }
+        ]
+      },
+      {
+        "provincia_id": "22",
+        "provincia": "Hermanas Mirabal",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 35375
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 15289
+          }
+        ]
+      },
+      {
+        "provincia_id": "23",
+        "provincia": "Samana",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 25207
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 21200
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 3044
+          }
+        ]
+      },
+      {
+        "provincia_id": "24",
+        "provincia": "San Cristobal",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 158055
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "GENS",
+              "OD"
+            ],
+            "total_votos": 67101
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 47201
+          }
+        ]
+      },
+      {
+        "provincia_id": "25",
+        "provincia": "San Juan",
+        "ganador": "FP",
+        "bloques": [
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 66817
+          },
+          {
+            "candidato_base": "PRSD",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 56828
+          }
+        ]
+      },
+      {
+        "provincia_id": "26",
+        "provincia": "San Pedro de Macoris",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 82705
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 48962
+          }
+        ]
+      },
+      {
+        "provincia_id": "27",
+        "provincia": "Sanchez Ramirez",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 58049
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 21430
+          }
+        ]
+      },
+      {
+        "provincia_id": "28",
+        "provincia": "Santiago",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 226765
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 80439
+          }
+        ]
+      },
+      {
+        "provincia_id": "29",
+        "provincia": "Santiago Rodriguez",
+        "ganador": "PPG",
+        "bloques": [
+          {
+            "candidato_base": "PPG",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 18172
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 13730
+          }
+        ]
+      },
+      {
+        "provincia_id": "30",
+        "provincia": "Valverde",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 41628
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 23706
+          }
+        ]
+      },
+      {
+        "provincia_id": "31",
+        "provincia": "San Jose de Ocoa",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 22733
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 3015
+          },
+          {
+            "candidato_base": "OD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 1944
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 478470
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 385792
+          }
+        ]
+      }
+    ],
+    "diputados": [
+      {
+        "provincia_id": "01",
+        "provincia": "Distrito Nacional",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 91762
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD"
+            ],
+            "total_votos": 22985
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 31659
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRSC",
+              "FNP"
+            ],
+            "total_votos": 3580
+          },
+          {
+            "candidato_base": "OD",
+            "partidos": [
+              "BIS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 14324
+          }
+        ]
+      },
+      {
+        "provincia_id": "01",
+        "provincia": "Distrito Nacional",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 73893
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD"
+            ],
+            "total_votos": 16435
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 26550
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRSC",
+              "FNP"
+            ],
+            "total_votos": 1154
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 3624
+          }
+        ]
+      },
+      {
+        "provincia_id": "01",
+        "provincia": "Distrito Nacional",
+        "circ": 3,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 87390
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD"
+            ],
+            "total_votos": 24495
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 30274
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRSC",
+              "FNP"
+            ],
+            "total_votos": 2165
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 2260
+          }
+        ]
+      },
+      {
+        "provincia_id": "02",
+        "provincia": "La Altagracia",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 64225
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 13098
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC"
+            ],
+            "total_votos": 17038
+          }
+        ]
+      },
+      {
+        "provincia_id": "03",
+        "provincia": "Azua",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 69973
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "GENS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 17034
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 20730
+          }
+        ]
+      },
+      {
+        "provincia_id": "04",
+        "provincia": "Bahoruco",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 32929
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 5028
+          }
+        ]
+      },
+      {
+        "provincia_id": "05",
+        "provincia": "Barahona",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 53931
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 13999
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 17597
+          }
+        ]
+      },
+      {
+        "provincia_id": "06",
+        "provincia": "Dajabon",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 24898
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PSC"
+            ],
+            "total_votos": 9625
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 1906
+          }
+        ]
+      },
+      {
+        "provincia_id": "07",
+        "provincia": "Duarte",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 86887
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 17053
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 17333
+          }
+        ]
+      },
+      {
+        "provincia_id": "08",
+        "provincia": "El Seibo",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 26617
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PSC"
+            ],
+            "total_votos": 6195
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 5672
+          }
+        ]
+      },
+      {
+        "provincia_id": "09",
+        "provincia": "Elias Piña",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 17143
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 6876
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 4755
+          }
+        ]
+      },
+      {
+        "provincia_id": "10",
+        "provincia": "Espaillat",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 76950
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 12822
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "PSC"
+            ],
+            "total_votos": 390
+          }
+        ]
+      },
+      {
+        "provincia_id": "11",
+        "provincia": "Hato Mayor",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 35750
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 4535
+          }
+        ]
+      },
+      {
+        "provincia_id": "12",
+        "provincia": "Independencia",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 16065
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 6036
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 1662
+          }
+        ]
+      },
+      {
+        "provincia_id": "13",
+        "provincia": "La Romana",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "DXC",
+              "PUN",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 50906
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 25500
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 1347
+          }
+        ]
+      },
+      {
+        "provincia_id": "14",
+        "provincia": "La Vega",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 79840
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 20964
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "PSC"
+            ],
+            "total_votos": 384
+          },
+          {
+            "candidato_base": "PHD",
+            "partidos": [
+              "PHD",
+              "PPG"
+            ],
+            "total_votos": 1724
+          }
+        ]
+      },
+      {
+        "provincia_id": "14",
+        "provincia": "La Vega",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 32600
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 6851
+          },
+          {
+            "candidato_base": "PHD",
+            "partidos": [
+              "PHD",
+              "PPG"
+            ],
+            "total_votos": 268
+          }
+        ]
+      },
+      {
+        "provincia_id": "15",
+        "provincia": "Maria Trinidad Sanchez",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 49869
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "PSC"
+            ],
+            "total_votos": 16086
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 2934
+          }
+        ]
+      },
+      {
+        "provincia_id": "16",
+        "provincia": "Monseñor Nouel",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 47539
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 19308
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "GENS"
+            ],
+            "total_votos": 1205
+          }
+        ]
+      },
+      {
+        "provincia_id": "17",
+        "provincia": "Monte Cristi",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 35952
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 9208
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 5835
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "FAMP"
+            ],
+            "total_votos": 106
+          }
+        ]
+      },
+      {
+        "provincia_id": "18",
+        "provincia": "Monte Plata",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 49960
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD"
+            ],
+            "total_votos": 23835
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 20704
+          }
+        ]
+      },
+      {
+        "provincia_id": "19",
+        "provincia": "Pedernales",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PRSD",
+              "MODA",
+              "FAMP",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 7251
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD"
+            ],
+            "total_votos": 3200
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 3736
+          }
+        ]
+      },
+      {
+        "provincia_id": "20",
+        "provincia": "Peravia",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 63333
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "PSC"
+            ],
+            "total_votos": 7028
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 7841
+          }
+        ]
+      },
+      {
+        "provincia_id": "21",
+        "provincia": "Puerto Plata",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 61197
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 15916
+          }
+        ]
+      },
+      {
+        "provincia_id": "21",
+        "provincia": "Puerto Plata",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "FNP",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 32944
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 13254
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 3336
+          }
+        ]
+      },
+      {
+        "provincia_id": "22",
+        "provincia": "Hermanas Mirabal",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 32268
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD"
+            ],
+            "total_votos": 7940
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 10109
+          }
+        ]
+      },
+      {
+        "provincia_id": "23",
+        "provincia": "Samana",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "DXC",
+              "PUN",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 26995
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 7183
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC"
+            ],
+            "total_votos": 9310
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRSC",
+              "PCR",
+              "FNP"
+            ],
+            "total_votos": 1716
+          }
+        ]
+      },
+      {
+        "provincia_id": "24",
+        "provincia": "San Cristobal",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 64866
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "GENS",
+              "OD"
+            ],
+            "total_votos": 27489
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 22444
+          }
+        ]
+      },
+      {
+        "provincia_id": "24",
+        "provincia": "San Cristobal",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 51215
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD",
+              "OD"
+            ],
+            "total_votos": 26520
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 10186
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "GENS",
+              "PSC"
+            ],
+            "total_votos": 1196
+          }
+        ]
+      },
+      {
+        "provincia_id": "24",
+        "provincia": "San Cristobal",
+        "circ": 3,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 34844
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PRD"
+            ],
+            "total_votos": 10119
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 22785
+          }
+        ]
+      },
+      {
+        "provincia_id": "25",
+        "provincia": "San Juan",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 70609
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 30060
+          }
+        ]
+      },
+      {
+        "provincia_id": "26",
+        "provincia": "San Pedro de Macoris",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 81839
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PSC"
+            ],
+            "total_votos": 18945
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 20741
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 1077
+          }
+        ]
+      },
+      {
+        "provincia_id": "27",
+        "provincia": "Sanchez Ramirez",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 55409
+          },
+          {
+            "candidato_base": "PRD",
+            "partidos": [
+              "PLD",
+              "FP",
+              "PRD",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 24487
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 252
+          }
+        ]
+      },
+      {
+        "provincia_id": "28",
+        "provincia": "Santiago",
+        "circ": 1,
+        "ganador": "FP",
+        "bloques": [
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "PQDC",
+              "OD"
+            ],
+            "total_votos": 25575
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "PDI"
+            ],
+            "total_votos": 612
+          }
+        ]
+      },
+      {
+        "provincia_id": "28",
+        "provincia": "Santiago",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 43998
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "PQDC",
+              "OD"
+            ],
+            "total_votos": 13382
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "PDI"
+            ],
+            "total_votos": 601
+          }
+        ]
+      },
+      {
+        "provincia_id": "28",
+        "provincia": "Santiago",
+        "circ": 3,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 70590
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PRD",
+              "PQDC",
+              "OD"
+            ],
+            "total_votos": 16937
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "PDI"
+            ],
+            "total_votos": 1320
+          }
+        ]
+      },
+      {
+        "provincia_id": "29",
+        "provincia": "Santiago Rodriguez",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 19488
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 7761
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 3966
+          }
+        ]
+      },
+      {
+        "provincia_id": "30",
+        "provincia": "Valverde",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 46248
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 11766
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 6553
+          }
+        ]
+      },
+      {
+        "provincia_id": "31",
+        "provincia": "San Jose de Ocoa",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "ALPAIS",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PP",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "PPG",
+              "JS"
+            ],
+            "total_votos": 19199
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "OD"
+            ],
+            "total_votos": 6568
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 7139
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 1,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 63771
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 29240
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 2078
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 2217
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 2,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 41759
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PSC",
+              "PDI"
+            ],
+            "total_votos": 19170
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 837
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 1499
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 3,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 113461
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PDI"
+            ],
+            "total_votos": 34967
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC",
+              "PSC"
+            ],
+            "total_votos": 46818
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 3729
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 8700
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 4,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 86252
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 35155
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 3343
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 5,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 73359
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PDI"
+            ],
+            "total_votos": 11271
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 32941
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 1534
+          }
+        ]
+      },
+      {
+        "provincia_id": "32",
+        "provincia": "Santo Domingo",
+        "circ": 6,
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "PRSC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 94801
+          },
+          {
+            "candidato_base": "PLD",
+            "partidos": [
+              "PLD",
+              "PDI"
+            ],
+            "total_votos": 24012
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "PQDC"
+            ],
+            "total_votos": 58523
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD",
+              "PSC"
+            ],
+            "total_votos": 1840
+          },
+          {
+            "candidato_base": "FAMP",
+            "partidos": [
+              "ALPAIS",
+              "DXC",
+              "FAMP",
+              "APD",
+              "FNP",
+              "PNVC"
+            ],
+            "total_votos": 3936
+          }
+        ]
+      }
+    ],
+    "diputados_exterior": [
+      {
+        "circ_exterior": 1,
+        "region": "Exterior General",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PLR",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 55128
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS"
+            ],
+            "total_votos": 16485
+          },
+          {
+            "candidato_base": "PRSC",
+            "partidos": [
+              "PRSC",
+              "PPG"
+            ],
+            "total_votos": 1279
+          },
+          {
+            "candidato_base": "OD",
+            "partidos": [
+              "OD"
+            ],
+            "total_votos": 710
+          },
+          {
+            "candidato_base": "PDI",
+            "partidos": [
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 341
+          }
+        ]
+      },
+      {
+        "circ_exterior": 2,
+        "region": "Caribe y Centroamérica",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PRI",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 17790
+          },
+          {
+            "candidato_base": "FP",
+            "partidos": [
+              "FP",
+              "BIS",
+              "PQDC",
+              "OD",
+              "PDI"
+            ],
+            "total_votos": 5182
+          }
+        ]
+      },
+      {
+        "circ_exterior": 3,
+        "region": "Europa y Otros",
+        "ganador": "PRM",
+        "bloques": [
+          {
+            "candidato_base": "PRM",
+            "partidos": [
+              "PRM",
+              "DXC",
+              "PUN",
+              "PHD",
+              "PCR",
+              "PRSD",
+              "MODA",
+              "APD",
+              "PPC",
+              "UDC",
+              "PAL",
+              "PDP",
+              "PNVC",
+              "PASOVE",
+              "JS"
+            ],
+            "total_votos": 20760
+          },
+          {
+            "candidato_base": "BIS",
+            "partidos": [
+              "BIS",
+              "OD"
+            ],
+            "total_votos": 1172
+          },
+          {
+            "candidato_base": "PQDC",
+            "partidos": [
+              "PQDC",
+              "PDI"
+            ],
+            "total_votos": 253
+          }
+        ]
+      }
+    ]
+  }
+}
