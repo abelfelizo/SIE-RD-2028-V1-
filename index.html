@@ -12,11 +12,12 @@
   <div class="brand">
     <span style="font-size:1.3rem">⚡</span>
     <span class="brand-name">SIE 2028</span>
-    <span class="badge">v8.9</span>
+    <span class="badge">v9.1</span>
     <span class="badge-ds">DATASET 2024</span>
   </div>
   <div style="display:flex;gap:.75rem;align-items:center">
     <span id="sys-status" style="font-size:.76rem;color:var(--muted)">Iniciando...</span>
+    <button class="theme-toggle" id="btn-theme" onclick="toggleTheme()" title="Alternar modo claro/oscuro">🌙 Oscuro</button>
   </div>
 </header>
 
@@ -47,6 +48,7 @@
     <span class="nav-group-label">2028</span>
     <button class="nav-btn" data-view="simulador">🔬 Simulador</button>
     <button class="nav-btn" data-view="proyeccion">📈 Proyección</button>
+    <button class="nav-btn" data-view="objetivo">🎯 Objetivo 2028</button>
   </div>
   <div class="nav-sep"></div>
   <div class="nav-group">
@@ -181,6 +183,7 @@
       <button class="level-btn active" data-level="presidencial">Presidencial</button>
       <button class="level-btn" data-level="senadores">Senadores</button>
       <button class="level-btn" data-level="diputados">Diputados</button>
+      <button class="level-btn" data-level="municipio">Municipio</button>
     </div>
     <div class="grid g2" style="margin-bottom:1rem">
       <div class="card">
@@ -221,6 +224,7 @@
       <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
       <button class="level-btn" data-nivel="senadores">Senadores</button>
       <button class="level-btn" data-nivel="diputados">Diputados</button>
+      <button class="level-btn" data-nivel="municipio">Municipio</button>
     </div>
     <div class="kpi-grid" id="mov-kpis"></div>
     <div class="card">
@@ -230,7 +234,7 @@
       </div>
       <p class="note" style="margin-bottom:.75rem">Votos necesarios = ceil(Δvotos/2)+1. Factibilidad = % de abstencionistas a movilizar.</p>
       <div id="movilizacion-list"></div>
-    </div>
+        <div id="mov-resumen" style="margin-top:1rem"></div>
   </div>
 
   <div id="view-riesgo" class="view">
@@ -243,6 +247,7 @@
       <span class="level-label" style="margin-left:.75rem">Nivel:</span>
       <button class="level-btn active" data-nivel="presidencial">Presidencial</button>
       <button class="level-btn" data-nivel="senadores">Senadores</button>
+      <button class="level-btn" data-nivel="municipio">Municipio</button>
     </div>
     <div class="kpi-grid" id="riesgo-kpis"></div>
     <div class="grid g2">
@@ -300,38 +305,117 @@
   <!-- NIVEL 4: PROSPECTIVA 2028 -->
   <div id="view-simulador" class="view">
     <div class="section-title">🔬 Simulador Electoral 2028</div>
+    <div class="kpi-grid" id="sim-kpis" style="margin-bottom:.75rem"></div>
     <div class="sim-grid">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Intención de voto</span><span class="card-badge">D'Hondt + umbral 2%</span></div>
+        <div class="card-hdr"><span class="card-title">Intención de voto presidencial</span><span class="card-badge">D'Hondt + umbral 2%</span></div>
         <div id="sim-sliders" class="slider-group"></div>
-        <div style="margin-top:1rem">
-          <button id="btn-simular" style="background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:var(--r);font-weight:700;cursor:pointer;width:100%">▶ Simular D'Hondt</button>
+        <div style="margin-top:.75rem;display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+          <div>
+            <div style="font-size:.68rem;color:var(--muted);margin-bottom:.2rem">Participación %</div>
+            <input type="number" id="sim-participacion" min="40" max="80" value="54" style="text-align:center;font-weight:700">
+          </div>
+          <div>
+            <div style="font-size:.68rem;color:var(--muted);margin-bottom:.2rem">Alianza FP+PLD</div>
+            <select id="sim-alianza">
+              <option value="no">Sin alianza</option>
+              <option value="si">Con alianza</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:.75rem">
+          <button id="btn-simular" style="background:var(--accent);color:#fff;border:none;padding:.6rem 1.2rem;border-radius:var(--r);font-weight:700;cursor:pointer;width:100%">▶ Simular</button>
         </div>
         <p class="note">D'Hondt con umbral 2% — Ley Electoral RD 275-97, Art. 68</p>
       </div>
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Proyección legislativa</span></div>
+        <div class="card-hdr"><span class="card-title">Proyección legislativa</span><span class="card-badge" id="sim-escenario-badge">Escenario base</span></div>
         <div id="sim-results"><p class="text-muted text-sm">Ajusta los sliders y presiona Simular.</p></div>
       </div>
+    </div>
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr"><span class="card-title">Análisis presidencial del escenario</span><span class="card-badge">Ballotage · Mayoría</span></div>
+      <div id="sim-pres-analysis"><p class="text-muted text-sm" style="padding:.5rem 0">Ejecuta la simulación para ver el análisis.</p></div>
     </div>
   </div>
 
   <div id="view-proyeccion" class="view">
-    <div class="section-title">📈 Proyección Electoral 2028</div>
+    <div class="section-title">📈 Proyección Electoral 2028 — v9.1</div>
+
+    <!-- Escenarios automáticos -->
+    <div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">
+      <div class="escenario-card" id="esc-pesimista">
+        <div class="escenario-label">⬇ Pesimista</div>
+        <div class="escenario-val" id="esc-p-fp">—</div>
+        <div class="escenario-sub">FP · Part. 50%</div>
+      </div>
+      <div class="escenario-card activo" id="esc-base">
+        <div class="escenario-label">● Base</div>
+        <div class="escenario-val" id="esc-b-fp">—</div>
+        <div class="escenario-sub">FP · Part. 54%</div>
+      </div>
+      <div class="escenario-card" id="esc-optimista">
+        <div class="escenario-label">⬆ Optimista</div>
+        <div class="escenario-val" id="esc-o-fp">—</div>
+        <div class="escenario-sub">FP · Part. 58%</div>
+      </div>
+    </div>
+
     <div class="grid g2">
       <div class="card">
-        <div class="card-hdr"><span class="card-title">Modelo Fundamentals</span><span class="card-badge">Abramowitz 2008 adaptado</span></div>
+        <div class="card-hdr"><span class="card-title">Proyección nacional</span><span class="card-badge">Fundamentals + Swing v9.1</span></div>
         <div id="proy-fundamentals"></div>
-        <p class="note">Incumbencia Erikson & Wlezien +3.5pp. Desgaste -2pp por ciclo adicional. Regresión a la media 15% (Silver/538).</p>
+        <p class="note">Swing histórico 35% · Incumbencia ×1.02 · Fatiga -2pp · Normalización Panebianco 1988</p>
       </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Swing histórico 2020→2024</span><span class="card-badge">Por partido</span></div>
+        <div id="proy-swing"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <div class="card-hdr"><span class="card-title">Proyección territorial — Top provincias</span><span class="card-badge">Swing local + movilización</span></div>
+      <div id="proy-territorial"></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:1rem">
       <div class="card">
         <div class="card-hdr"><span class="card-title">Crecimiento del Padrón</span><span class="card-badge">CAGR</span></div>
         <div id="proy-padron"></div>
       </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Encuestas — Carga manual</span><span class="card-badge">Silver/538 weighting</span></div>
+        <div id="encuestas-panel"></div>
+      </div>
     </div>
-    <div class="card" style="margin-top:1rem">
-      <div class="card-hdr"><span class="card-title">Encuestas — Carga manual</span><span class="card-badge">Silver/538 weighting</span></div>
-      <div id="encuestas-panel"></div>
+  </div>
+
+
+  <!-- OBJETIVO 2028 -->
+  <div id="view-objetivo" class="view">
+    <div class="section-title">🎯 Objetivo Electoral 2028 — Meta FP</div>
+    <div class="kpi-grid" id="obj-kpis"></div>
+
+    <div class="grid g2" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Meta de votos 2028</span><span class="card-badge">Motor Meta Electoral M21</span></div>
+        <div id="obj-meta-detalle"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Ruta de victoria mínima</span><span class="card-badge">Motor Ruta M20</span></div>
+        <div id="obj-ruta"></div>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Provincias pivot</span><span class="card-badge">Motor Pivot M19</span></div>
+        <div id="obj-pivot"></div>
+      </div>
+      <div class="card">
+        <div class="card-hdr"><span class="card-title">Ranking de prioridad de inversión</span><span class="card-badge">Motor Prioridad M22</span></div>
+        <div id="obj-prioridad"></div>
+      </div>
     </div>
   </div>
 
@@ -345,7 +429,7 @@
   </div>
 
   <div id="view-motores" class="view">
-    <div class="section-title">⚙ Estado de Motores — SIE 2028 v8.9</div>
+    <div class="section-title">⚙ Estado de Motores — SIE 2028 v9.1</div>
     <div class="grid g2">
       <div class="card"><div class="card-hdr"><span class="card-title">Activos</span></div><div id="motores-on"></div></div>
       <div class="card"><div class="card-hdr"><span class="card-title">Desactivados</span></div><div id="motores-off"></div></div>
@@ -356,5 +440,35 @@
 
 </main>
 <script src="./app.js"></script>
+
+<script>
+// ── Tabs senadores ──
+document.getElementById('sen-tab-bar').addEventListener('click', function(e){
+  var btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  var target = btn.dataset.tab;
+  document.querySelectorAll('#sen-tab-bar .tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('#view-senadores .tab-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  var panel = document.getElementById(target.replace('sen-real','sen-tab-real').replace('sen-coal','sen-tab-coal'));
+  if (panel) panel.classList.add('active');
+});
+
+// ── Toggle tema claro/oscuro ──
+function toggleTheme(){
+  var isLight = document.body.classList.toggle('light');
+  document.getElementById('btn-theme').textContent = isLight ? '🌙 Oscuro' : '☀ Claro';
+  localStorage.setItem('sie-theme', isLight ? 'light' : 'dark');
+}
+// Restaurar preferencia
+(function(){
+  var t = localStorage.getItem('sie-theme');
+  if (t === 'light') {
+    document.body.classList.add('light');
+    var b = document.getElementById('btn-theme');
+    if (b) b.textContent = '🌙 Oscuro';
+  }
+})();
+</script>
 </body>
 </html>

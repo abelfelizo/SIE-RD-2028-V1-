@@ -1,5 +1,5 @@
 // ================================================================
-// SIE 2028 — ENTRY POINT v8.9
+// SIE 2028 — ENTRY POINT v9.1
 // Carga datasets 2024 + 2020, expone globals para engine + UI
 // ================================================================
 
@@ -91,19 +91,20 @@
 
   try {
     await loadScript('./core/engine.js');
+    await loadScript('./core/engine_v9_nuevos_motores.js');
     await loadScript('./core/ui.js');
   } catch (err) {
     setError('Error cargando motor: ' + err.message);
     return;
   }
 
-  console.log('✅ SIE 2028 v8.9 · 2024 + 2020 ACTIVOS · Boot OK');
+  console.log('✅ SIE 2028 v9.1 · 2024 + 2020 ACTIVOS · Boot OK');
 })();
 
 function loadScript(src) {
   return new Promise(function(resolve, reject) {
     var s = document.createElement('script');
-    s.src = src + '?v=89';
+    s.src = src + '?v=91';
     s.onload = resolve;
     s.onerror = function() { reject(new Error('No se pudo cargar ' + src)); };
     document.body.appendChild(s);

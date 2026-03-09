@@ -1,9 +1,8 @@
 {
   "nombre": "SIE 2028 v9.0",
-  "version": "9.0.0",
+  "version": "9.1",
   "fecha": "2026-03-09",
   "estado": "PRODUCCIÓN",
-  
   "cambios_v9_0": {
     "nuevos_motores": 5,
     "motores_totales": 23,
@@ -11,7 +10,6 @@
     "breaking_changes": 0,
     "compatibilidad": "100% con v8.9-pre"
   },
-  
   "nuevos_motores": [
     {
       "nombre": "MotorPivotElectoral",
@@ -45,7 +43,6 @@
       "ubicacion": "core/engine.js"
     }
   ],
-  
   "acceso_motores": {
     "javascript": "window.SIE_MOTORES.PivotElectoral.calculate(provinces)",
     "metodos_disponibles": [
@@ -55,5 +52,8 @@
       "window.SIE_MOTORES.PrioridadEstrategica",
       "window.SIE_MOTORES.NormalizacionHistoricav9"
     ]
-  }
+  },
+  "motores_activos": 22,
+  "motores_inactivos": 1,
+  "nota": "v9.1: Motor Proyeccion v9.1 (swing+territorial+escenarios), Motor Objetivo 2028, fix participacion, fix tabs senadores, municipios en potencial/movilizacion/riesgo, simulador mejorado, palette neutra, dark/light mode"
 }

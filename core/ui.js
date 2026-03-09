@@ -65,6 +65,7 @@ document.getElementById('main-nav').addEventListener('click', function(e){
   if(id==='historico') renderHistorico();
   if(id==='simulador' && !window._simInit) initSimulador();
   if(id==='proyeccion' && !window._proyInit) initProyeccion();
+  if(id==='objetivo') renderObjetivo();
 });
 
 // Helpers
@@ -246,6 +247,26 @@ function renderSenadores(){
       +'<div style="margin-top:.35rem;border-top:1px solid var(--border);padding-top:.3rem">'+indHtml+'</div>'
       +'</div>';
   }).join('');
+
+  // ── Tab coalición: participación real por bloque ──
+  var coalData = M.Curules.getSenadorePorCoalicion ? M.Curules.getSenadorePorCoalicion() : [];
+  var coalHtml = coalData.length ? coalData.map(function(c){
+    var col = c.id==='PRM-coalicion'?'var(--prm)':c.id==='FP-coalicion'?'var(--fp)':'var(--muted)';
+    return '<div style="display:flex;align-items:center;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--border)">'
+      +'<div style="flex:1"><div style="font-size:.85rem;font-weight:700;color:'+col+'">'+c.id+'</div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">'+
+      (c.partidos?c.partidos.join(', '):'')+'</div></div>'
+      +'<div style="text-align:right"><div style="font-size:1.5rem;font-weight:800;color:'+col+'">'+c.curules+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted)">senadores</div></div></div>';
+  }).join('') : '<p class="text-muted text-sm" style="padding:.75rem 0">Datos de coalición no disponibles.</p>';
+
+  var senCoalDetail = document.getElementById('sen-coal-detail');
+  if(senCoalDetail) senCoalDetail.innerHTML =
+    '<div style="margin-bottom:.75rem">'
+    +kpi('blue','PRM coalición',prmCoal,'de 32 senadores')
+    +kpi('purple','FP coalición',fpCoal,'de 32 senadores')
+    +'</div>'
+    +coalHtml;
 }
 
 // ====== DIPUTADOS ======
@@ -468,7 +489,51 @@ function renderHistorico(){
 
 // ====== POTENCIAL ======
 var _POT_NIVEL = 'presidencial';
-function _getProvDS(n){ return n==='senadores' ? _PROV_SEN : n==='diputados' ? _PROV_DIP : _PROV_PRES; }
+function _getProvDS(n){
+  if(n==='senadores') return _PROV_SEN;
+  if(n==='diputados') return _PROV_DIP;
+  if(n==='municipio'){
+    // Construir dataset municipal desde resultados_2024
+    var muns = (_DS_RESULTADOS_PRES && _DS_RESULTADOS_PRES.por_municipio) || [];
+    return muns.map(function(m){
+      var total = Object.values(m.resultados||{}).reduce(function(s,v){return s+v;},0);
+      var sorted = Object.entries(m.resultados||{}).sort(function(a,b){return b[1]-a[1];});
+      var ganador = sorted[0]?sorted[0][0]:'?';
+      var pctG = total ? +(sorted[0][1]/total*100).toFixed(1) : 0;
+      var pctFP = total && m.resultados.FP ? +(m.resultados.FP/total*100).toFixed(1) : 0;
+      var pctPRM = total && m.resultados.PRM ? +(m.resultados.PRM/total*100).toFixed(1) : 0;
+      var margin = sorted.length>=2 ? +(sorted[0][1]/total*100 - sorted[1][1]/total*100).toFixed(1) : 0;
+      return {
+        id: m.municipio_id,
+        provincia: m.municipio,
+        provincia_id: m.provincia_id,
+        ganador: ganador,
+        pct_ganador: pctG,
+        pct_fp: pctFP,
+        pct_prm: pctPRM,
+        margen_pp: Math.abs(margin),
+        abstencion: m.participacion ? +(100-m.participacion).toFixed(1) : 0,
+        participacion: m.participacion||0,
+        votos_emitidos: total,
+        inscritos: m.inscritos||0,
+        enpp: 2.0,
+        riesgo_score: Math.round(50 + (100-margin*2)*0.3),
+        riesgo_nivel: margin<5?'alto':margin<15?'medio':'bajo',
+        competitividad: margin<5?'alta':margin<15?'media':'baja',
+        score_ofensivo_fp: Math.round(pctFP * 1.5),
+        categoria_ofensiva_fp: pctFP>40?'consolidada':pctFP>30?'objetivo_prioritario':pctFP>20?'objetivo_secundario':'perdida',
+        votos_gap_fp: m.resultados.PRM && m.resultados.FP ? Math.max(0,m.resultados.PRM-m.resultados.FP+1) : 0,
+        votos_necesarios: 0,
+        pct_abstencionistas_a_movilizar: 0,
+        factibilidad: margin<5?'alta':margin<15?'media':'baja',
+        blocs: m.resultados||{},
+        top3: sorted.slice(0,3).map(function(e){return {id:e[0],pct:total?+(e[1]/total*100).toFixed(1):0};}),
+        prioridad_defensa: pctPRM<45?'alta':pctPRM<55?'media':'baja'
+      };
+    });
+  }
+  return _PROV_PRES;
+}
 
 function nivelTabs(idPrefix, activo, onChange) {
   return ['presidencial','senadores','diputados'].map(function(n){
@@ -616,6 +681,113 @@ function renderRiesgo(){
 
 window.setRieNivel = function(n){ _RIE_NIVEL=n; renderRiesgo(); };
 
+
+// ====== OBJETIVO 2028 ======
+function renderObjetivo(){
+  // Meta electoral — Motor M21
+  var padron2028 = 8700000;
+  var votosActFP = 1650000; // aprox votos FP 2024
+  var metaBase  = Math.round(padron2028 * 0.54 * 0.501);
+  var metaPes   = Math.round(padron2028 * 0.50 * 0.501);
+  var metaOpt   = Math.round(padron2028 * 0.58 * 0.501);
+  var gapBase   = metaBase - votosActFP;
+  var gapPct    = +(votosActFP/metaBase*100).toFixed(1);
+
+  document.getElementById('obj-kpis').innerHTML =
+    kpi('purple','Votos FP 2024',fmt(votosActFP),'Base de partida')
+    +kpi('gold','Meta base 2028',fmt(metaBase),'50.1% votos emitidos')
+    +kpi('red','Gap a cerrar',fmt(gapBase),'votos adicionales necesarios')
+    +kpi('green','Avance actual',gapPct+'%','del objetivo base');
+
+  document.getElementById('obj-meta-detalle').innerHTML =
+    '<div style="margin-bottom:.75rem">'
+    +'<div style="font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:.3rem">Progreso hacia la meta</div>'
+    +'<div class="meta-progress-track"><div class="meta-progress-fill" style="width:'+Math.min(100,gapPct)+'%;background:var(--fp)"></div></div>'
+    +'<div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted);margin-top:.2rem">'
+    +'<span>'+fmt(votosActFP)+' actuales</span><span>'+fmt(metaBase)+' meta</span></div>'
+    +'</div>'
+    +[
+      {l:'Padrón proyectado 2028',v:fmt(padron2028),c:'var(--text)'},
+      {l:'Escenario pesimista (50%)',v:fmt(metaPes)+' votos',c:'var(--red)'},
+      {l:'Escenario base (54%)',v:fmt(metaBase)+' votos',c:'var(--gold)'},
+      {l:'Escenario optimista (58%)',v:fmt(metaOpt)+' votos',c:'var(--green)'},
+      {l:'Gap pesimista',v:fmt(metaPes-votosActFP),c:'var(--red)'},
+      {l:'Gap base',v:fmt(gapBase),c:'var(--gold)'},
+      {l:'Gap optimista',v:fmt(metaOpt-votosActFP),c:'var(--orange)'},
+      {l:'Evaluación',v:gapBase<=400000?'FACTIBLE':'DESAFIANTE',c:gapBase<=400000?'var(--green)':'var(--red)'}
+    ].map(function(r){return rowStat(r.l,r.v,r.c);}).join('');
+
+  // Ruta mínima — Motor M20
+  var provVotos = {};
+  (_PROV_METRICS_PRES||[]).forEach(function(p){
+    provVotos[p.provincia] = p.votos_emitidos || 0;
+  });
+  var sorted = Object.entries(provVotos).sort(function(a,b){return b[1]-a[1];});
+  var ruta = [], acum = 0;
+  for(var i=0;i<sorted.length;i++){
+    ruta.push({nombre:sorted[i][0], votos:sorted[i][1]});
+    acum += sorted[i][1];
+    if(acum >= metaBase) break;
+  }
+  document.getElementById('obj-ruta').innerHTML =
+    '<div style="font-size:.72rem;color:var(--muted);margin-bottom:.5rem">'
+    +'Combinación mínima de provincias para alcanzar meta base ('+(ruta.length)+' provincias)</div>'
+    +ruta.map(function(p,i){
+      return '<div style="display:flex;align-items:center;gap:.5rem;padding:.32rem 0;border-bottom:1px solid var(--border)">'
+        +'<span style="font-size:.65rem;color:var(--muted);min-width:16px">'+( i+1)+'</span>'
+        +'<span style="flex:1;font-size:.78rem;font-weight:600">'+p.nombre+'</span>'
+        +'<span style="font-size:.75rem;font-weight:700;color:var(--fp)">'+fmt(Math.round(p.votos*0.285))+'</span>'
+        +'<span style="font-size:.65rem;color:var(--muted)">FP est.</span></div>';
+    }).join('')
+    +'<p class="note">Estimación FP × 28.5% (base 2024) — votos necesarios por provincia</p>';
+
+  // Provincias pivot — Motor M19
+  var pivotData = (_PROV_METRICS_PRES||[]).map(function(p){
+    var tot = M.Padron.getPadronProv ? (M.Padron.getPadronProv(p.id)||p.inscritos||1) : (p.inscritos||1);
+    var padronalScore = (p.inscritos/8145548)*100*5;
+    var margin = Math.abs((p.pct_fp||0)-(p.pct_prm||0));
+    var competScore = (1-margin/100)*100;
+    var mobScore = p.abstencion||0;
+    var pivot = Math.min(100, padronalScore*0.35 + competScore*0.35 + mobScore*0.30);
+    return { nombre:p.provincia, pivot:+pivot.toFixed(1),
+             margen:margin, fp:p.pct_fp||0,
+             cat: pivot>60?'CRÍTICA':pivot>40?'IMPORTANTE':'SECUNDARIA' };
+  }).sort(function(a,b){return b.pivot-a.pivot;});
+
+  document.getElementById('obj-pivot').innerHTML = pivotData.slice(0,10).map(function(p){
+    var col = p.cat==='CRÍTICA'?'var(--red)':p.cat==='IMPORTANTE'?'var(--gold)':'var(--muted)';
+    return '<div style="display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid var(--border)">'
+      +'<div style="flex:1"><div style="font-size:.8rem;font-weight:700">'+p.nombre+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted)">Margen: '+p.margen.toFixed(1)+'pp · FP: '+p.fp+'%</div></div>'
+      +'<div style="text-align:right">'
+      +'<div style="font-size:.9rem;font-weight:800;color:var(--fp)">'+p.pivot+'</div>'
+      +'<span class="risk-badge" style="background:'+col+'22;color:'+col+';border:1px solid '+col+'44">'+p.cat+'</span></div></div>';
+  }).join('');
+
+  // Prioridad estratégica — Motor M22
+  var priorData = pivotData.map(function(p){
+    var provMetric = (_PROV_METRICS_PRES||[]).find(function(x){return x.provincia===p.nombre;})||{};
+    var gap = provMetric.votos_gap_fp||0;
+    var maxGap=200000;
+    var gapNorm = Math.max(0,1-(gap/maxGap));
+    var probNorm = (p.fp/100)*1.2;
+    var score = (p.pivot/100)*0.40 + gapNorm*0.30 + probNorm*0.30;
+    return { nombre:p.nombre, score:+(score*100).toFixed(1), gap:gap, fp:p.fp,
+             prioridad: score>0.65?'MÁXIMA':score>0.50?'ALTA':score>0.35?'MEDIA':'BAJA' };
+  }).sort(function(a,b){return b.score-a.score;});
+
+  document.getElementById('obj-prioridad').innerHTML = priorData.slice(0,10).map(function(p,i){
+    var col = p.prioridad==='MÁXIMA'?'var(--red)':p.prioridad==='ALTA'?'var(--orange)':p.prioridad==='MEDIA'?'var(--gold)':'var(--muted)';
+    return '<div style="display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid var(--border)">'
+      +'<span style="font-size:.65rem;color:var(--muted);min-width:16px">'+(i+1)+'</span>'
+      +'<div style="flex:1"><div style="font-size:.8rem;font-weight:700">'+p.nombre+'</div>'
+      +'<div style="font-size:.68rem;color:var(--muted)">FP: '+p.fp+'% · Gap: '+fmt(p.gap)+'</div></div>'
+      +'<div style="text-align:right">'
+      +'<div style="font-size:.85rem;font-weight:800;color:var(--accent)">'+p.score+'</div>'
+      +'<span style="font-size:.62rem;font-weight:700;color:'+col+'">'+p.prioridad+'</span></div></div>';
+  }).join('');
+}
+
 // ====== SIMULADOR ======
 var SIM_P = ['PRM','FP','PLD','PRD','PCR'];
 var SIM_D = {PRM:50,FP:27,PLD:11,PRD:6,PCR:6};
@@ -661,8 +833,60 @@ function runSimulation(){
     +'<p class="note">D\'Hondt con umbral 2% \u2014 Ley Electoral RD 275-97, Art. 68</p>';
 }
 
-// ====== PROYECCION ======
+// ====== PROYECCION v9.1 ======
 window._proyInit = false;
+
+function _calcSwingNacional(){
+  // Swing histórico 2020→2024 desde datos reales
+  var res20 = _DS_RESULTADOS_2020 && _DS_RESULTADOS_2020.niveles &&
+              _DS_RESULTADOS_2020.niveles.presidencial &&
+              _DS_RESULTADOS_2020.niveles.presidencial.resultados || {};
+  var tot20 = Object.values(res20).reduce(function(s,v){return s+v;},0);
+  var res24 = {};
+  (_PROV_METRICS_PRES||[]).forEach(function(p){
+    Object.entries(p.blocs||{}).forEach(function(e){ res24[e[0]]=(res24[e[0]]||0)+e[1]; });
+  });
+  var tot24 = Object.values(res24).reduce(function(s,v){return s+v;},0);
+  var swing = {};
+  ['PRM','FP','PLD'].forEach(function(p){
+    var pct20 = tot20 ? +(( res20[p]||0)/tot20*100).toFixed(2) : 0;
+    var pct24 = tot24 ? +((res24[p]||0)/tot24*100).toFixed(2) : 0;
+    swing[p] = { pct20:pct20, pct24:pct24, delta:+(pct24-pct20).toFixed(2) };
+  });
+  return swing;
+}
+
+function _proyectarConParticipacion(participacion){
+  var swing = _calcSwingNacional();
+  var PARTIDOS = ['PRM','FP','PLD'];
+  var BASE = { PRM:{votos_pct:57.44,es_incumbente:true,ciclos:1},
+               FP: {votos_pct:28.85,es_incumbente:false,ciclos:0},
+               PLD:{votos_pct:10.39,es_incumbente:false,ciclos:0} };
+  var result = {};
+  PARTIDOS.forEach(function(p){
+    var base = BASE[p];
+    var proy = base.votos_pct;
+    // Swing histórico × 0.35
+    var sw = swing[p] ? swing[p].delta * 0.35 : 0;
+    proy += sw;
+    // Incumbencia × 1.02 (no aditivo)
+    if(base.es_incumbente){ proy *= 1.02; }
+    // Fatiga 8 años
+    if(base.es_incumbente && base.ciclos>=2){ proy -= 2.0; }
+    // Normalización histórica
+    var factorH = M.NormalizacionHistorica.factorAjusteProyeccion(p);
+    if(factorH && factorH.multiplicador !== 1.00){ proy = proy * factorH.multiplicador; }
+    // Ajuste participación relativa a base 54%
+    var adj_partic = ((participacion - 0.54) / 0.54) * (p==='FP'?2.5:p==='PRM'?-1.5:0);
+    proy += adj_partic;
+    result[p] = { base_2024:base.votos_pct, proyectado:+Math.max(0,Math.min(100,proy)).toFixed(2),
+                  swing_aplicado:sw, es_incumbente:base.es_incumbente,
+                  normalizacion: factorH && factorH.multiplicador!==1 ? factorH : null };
+  });
+  var total = Object.values(result).reduce(function(s,x){return s+x.proyectado;},0);
+  Object.values(result).forEach(function(x){ x.proyectado_norm = +(x.proyectado/total*100).toFixed(2); });
+  return result;
+}
 
 function initProyeccion(){
   window._proyInit = true;
@@ -714,6 +938,77 @@ function initProyeccion(){
       '<div style="font-size:.73rem;color:var(--green);margin-bottom:.35rem">\u2705 '+window._polls.length+' encuesta(s) \u2014 Promedio: PRM '+agg.promedio.PRM+'% / FP '+agg.promedio.FP+'%</div>'
       +window._polls.map(function(p){return '<div style="font-size:.7rem;color:var(--muted)">'+p.fecha+' \u00b7 PRM:'+p.PRM+'% FP:'+p.FP+'% \u00b7 n='+p.n+' \u00b7 cal:'+p.calidad+'</div>';}).join('');
   });
+
+  // Escenarios automáticos + swing + territorial
+  renderProyEscenarios();
+  renderProySwing();
+  renderProyTerritorial();
+}
+
+function renderProyEscenarios(){
+  var esc = {
+    pesimista: _proyectarConParticipacion(0.50),
+    base:      _proyectarConParticipacion(0.54),
+    optimista: _proyectarConParticipacion(0.58)
+  };
+  ['pesimista','base','optimista'].forEach(function(e){
+    var pFP = esc[e].FP ? esc[e].FP.proyectado_norm : '?';
+    var pPRM = esc[e].PRM ? esc[e].PRM.proyectado_norm : '?';
+    var elId = e==='pesimista'?'esc-p-fp':e==='base'?'esc-b-fp':'esc-o-fp';
+    var el = document.getElementById(elId);
+    if(el) el.innerHTML = '<span style="color:var(--fp)">FP '+pFP+'%</span>'
+      +'<br><span style="font-size:.78rem;color:var(--prm)">PRM '+pPRM+'%</span>';
+  });
+}
+
+function renderProySwing(){
+  var swing = _calcSwingNacional();
+  var el = document.getElementById('proy-swing');
+  if(!el) return;
+  el.innerHTML = ['PRM','FP','PLD'].map(function(p){
+    var s = swing[p]||{pct20:0,pct24:0,delta:0};
+    var col = s.delta>0?'var(--green)':s.delta<0?'var(--red)':'var(--muted)';
+    var aplicado = +(s.delta*0.35).toFixed(2);
+    return '<div style="padding:.55rem 0;border-bottom:1px solid var(--border)">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.2rem">'
+      +'<span style="font-weight:700;color:'+pc(p)+'">'+p+'</span>'
+      +'<div style="text-align:right"><span style="font-size:.9rem;font-weight:800;color:'+col+'">'+(s.delta>0?'+':'')+s.delta+'pp</span>'
+      +'<span style="font-size:.68rem;color:var(--muted);margin-left:.35rem">→ aplica '+(aplicado>0?'+':'')+aplicado+'pp</span></div></div>'
+      +'<div style="font-size:.7rem;color:var(--muted)">2020: '+s.pct20+'% · 2024: '+s.pct24+'% · Factor swing: ×0.35</div>'
+      +'<div class="bar-track" style="margin-top:.2rem">'
+      +'<div class="bar-fill" style="width:'+Math.min(100,Math.abs(s.delta)*5)+'%;background:'+col+'"></div></div>'
+      +'</div>';
+  }).join('');
+}
+
+function renderProyTerritorial(){
+  var el = document.getElementById('proy-territorial');
+  if(!el) return;
+  var swing = _calcSwingNacional();
+  var swingFP = swing.FP ? swing.FP.delta : 0;
+  var provData = (_PROV_METRICS_PRES||[]).slice().sort(function(a,b){
+    // Ordenar por proximidad a FP ganar
+    var mA = a.pct_fp||0, mB = b.pct_fp||0;
+    return mB - mA;
+  }).slice(0,12);
+
+  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.4rem">'
+  +provData.map(function(p){
+    var fpBase = p.pct_fp||0;
+    var prmBase = p.pct_prm||0;
+    var fpProy = +(fpBase + swingFP*0.35).toFixed(1);
+    var diff = +(fpProy - fpBase).toFixed(1);
+    var gana = fpProy > prmBase;
+    var colGana = gana ? 'var(--green)' : 'var(--muted)';
+    return '<div style="background:var(--bg3);border:1px solid '+(gana?'var(--fp)':'var(--border)')+';border-radius:var(--r);padding:.55rem .75rem">'
+      +'<div style="font-size:.76rem;font-weight:700;margin-bottom:.15rem">'+p.provincia+'</div>'
+      +'<div style="display:flex;justify-content:space-between;align-items:center">'
+      +'<div style="font-size:.7rem;color:var(--muted)">FP actual: '+fpBase+'%</div>'
+      +'<div style="font-size:.85rem;font-weight:800;color:var(--fp)">→ '+fpProy+'%'
+      +'<span style="font-size:.65rem;color:'+(diff>0?'var(--green)':'var(--red)')+';margin-left:.25rem">'+(diff>0?'+':'')+diff+'pp</span></div></div>'
+      +'<div style="font-size:.68rem;margin-top:.2rem;color:'+colGana+'">'+(gana?'✅ Proyecta victoria FP':'PRM: '+prmBase+'% · Brecha '+(prmBase-fpProy).toFixed(1)+'pp')+'</div>'
+      +'</div>';
+  }).join('')+'</div>';
 }
 
 function renderProyFundamentals(polls_agg){
@@ -777,7 +1072,7 @@ function renderMotores(){
     {n:'Motor KPIs',           d:'ENPP Laakso-Taagepera (1979), concentraci\u00f3n, margen, riesgo 2da vuelta'},
     {n:'Motor Replay 2024',    d:'10 checkpoints cruzados contra datos JCE'},
     {n:'Motor Escenarios',     d:'Simulaci\u00f3n D\'Hondt multivariable con umbral legal'},
-    {n:'Motor Proyecci\u00f3n 2028',d:'Fundamentals+incumbencia (Abramowitz 2008, Erikson & Wlezien 2012)'},
+    {n:'Motor Proyecci\u00f3n 2028 v9.1',d:'Fundamentals+Swing hist.+Incumbencia+Fatiga+Normalizaci\u00f3n+Encuestas+Territorial (Abramowitz 2008)'},
     {n:'Motor Crecimiento Padr\u00f3n',d:'CAGR (Vf/Vi)^(1/n)-1 \u2014 Fuente JCE 2016-2024'},
     {n:'Motor Encuestas',      d:'Ponderaci\u00f3n exponencial tiempo/calidad/n (Silver/FiveThirtyEight)'},
     {n:'Motor Potencial',      d:'Score ofensivo/defensivo territorial (Jacobson 2004, Taagepera-Shugart)'},
@@ -785,6 +1080,10 @@ function renderMotores(){
     {n:'Motor Riesgo',         d:'Multi-nivel \u00b7 Composite risk index: margen(50%) + participaci\u00f3n(25%) + ENPP(25%)'},
     {n:'Motor Normalizaci\u00f3n Hist\u00f3rica',d:'Madurez organizativa + crecimiento estructural \u00b7 Modo COMPLETO con data 2020 (Panebianco 1988)'},
     {n:'Motor Hist\u00f3rico 2020',d:'Comparativo 2020-2024 \u00b7 Swing analysis \u00b7 45 circs diputados \u00b7 32 prov senadores'},
+    {n:'Motor Pivot Electoral (M19)',d:'Provincias que deciden la elecci\u00f3n \u00b7 Score = padr\u00f3n(35%) + competitividad(35%) + volatilidad(20%) + movilizaci\u00f3n(10%)'},
+    {n:'Motor Ruta de Victoria (M20)',d:'Combinaciones m\u00ednimas de provincias para alcanzar la meta electoral 2028'},
+    {n:'Motor Meta Electoral (M21)',d:'C\u00e1lculo de votos necesarios 2028 \u00b7 Escenarios pesimista / base / optimista'},
+    {n:'Motor Prioridad Estrat\u00e9gica (M22)',d:'Ranking de inversi\u00f3n por provincia \u00b7 Score = pivot(40%) + gap(30%) + probabilidad(30%)'},
   ];
   var MOTORES_OFF = [
     {n:'Motor Municipal',      d:'Alcaldes y Directores DM \u2014 pendiente dataset municipal 2020/2024'},
@@ -861,6 +1160,7 @@ renderHistorico();
 renderPotencial();
 renderMovilizacion();
 renderRiesgo();
+renderObjetivo();
 renderMotores();
 setTimeout(function(){drawParliament('parl-canvas',M.Curules.getTotalLegislativo(),M.Curules.getSumaCurules());},50);
 

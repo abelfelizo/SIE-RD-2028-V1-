@@ -2,7 +2,24 @@
 
 ---
 
-## v8.9 — Marzo 2026
+## v9.0 — Marzo 2026
+
+### Nuevos motores estratégicos (M19–M22)
+- **Motor Pivot Electoral (M19)**: identifica las provincias que deciden la elección · Score compuesto: padrón 35% + competitividad 35% + volatilidad 20% + movilización 10%
+- **Motor Ruta de Victoria (M20)**: calcula la combinación mínima de provincias para alcanzar la meta electoral 2028
+- **Motor Meta Electoral (M21)**: proyecta los votos necesarios para ganar en 2028 · 3 escenarios: pesimista (52%), base (54%), optimista (56%) de participación
+- **Motor Prioridad Estratégica (M22)**: ranking de inversión por provincia · Score: pivot 40% + gap 30% + probabilidad de victoria 30%
+
+### Corrección crítica de integración
+- `engine_v9_nuevos_motores.js` agregado a la cadena de carga en `app.js` — estaba presente en el repositorio pero nunca se ejecutaba
+- Los 4 motores nuevos ahora se registran correctamente en `window.SIE_MOTORES`
+- Panel de Motores actualizado: M19–M22 aparecen como ACTIVOS
+- Cache-busting actualizado a `?v=90`
+- Versión actualizada a v9.0 en header, motores y consola
+
+---
+
+
 
 ### Correcciones de sistema
 - Versión actualizada a v8.9 en header, motores y cache-busting
